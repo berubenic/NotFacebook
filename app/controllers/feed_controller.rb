@@ -1,3 +1,7 @@
 class FeedController < ApplicationController
-  def index; end
+  before_action :authenticate_user!
+
+  def index
+    @user = current_user
+  end
 end
