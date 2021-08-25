@@ -58,7 +58,7 @@ guard 'livereload' do
   watch(%r{app/helpers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
 
-  # watch(%r{app/assets/stylesheets/.+\.scss})
+  watch(%r{app/assets/stylesheets/.+\.scss})
 end
 
 guard :rspec, cmd: 'bundle exec rspec' do
