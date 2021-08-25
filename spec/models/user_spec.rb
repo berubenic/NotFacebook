@@ -80,4 +80,11 @@ RSpec.describe User, type: :model do
       expect(subject.errors[:last_name]).to_not include('is too long (maximum is 20 characters)')
     end
   end
+
+  describe '#full_name' do
+    it 'returns correct full_name' do
+      correct_full_name = 'Homer Simpson'
+      expect(subject.full_name).to eq(correct_full_name)
+    end
+  end
 end

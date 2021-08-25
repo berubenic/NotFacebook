@@ -47,12 +47,7 @@ guard 'livereload' do
   watch(%r{public/.+\.(#{compiled_exts * '|'})})
 
   extensions.each do |ext, type|
-    watch(%r{
-          (?:app|vendor)
-          (?:/assets/\w+/(?<path>[^.]+) # path+base without extension
-           (?<ext>\.#{ext})) # matching extension (must be first encountered)
-          (?:\.\w+|$) # other extensions
-          }x) do |m|
+    watch(%r{(?:app|vendor)(?:/assets/\w+/(?<path>[^.]+)(?<ext>\.#{ext}))(?:\.\w+|$)}x) do |m|
       path = m[1]
       "/assets/#{path}.#{type}"
     end
@@ -62,6 +57,8 @@ guard 'livereload' do
   watch(%r{app/views/.+\.(#{rails_view_exts * '|'})$})
   watch(%r{app/helpers/.+\.rb})
   watch(%r{config/locales/.+\.yml})
+
+  # watch(%r{app/assets/stylesheets/.+\.scss})
 end
 
 guard :rspec, cmd: 'bundle exec rspec' do

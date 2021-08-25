@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+ .devise-container {
+     display: grid;
+     justify-content: center;
+ }
