@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   root 'feed#index'
   # FIX FOR refreshing users/password/new after error resulted in No Route Error
   get 'users/password', to: redirect('/')
+
+  resources 'posts'
 end

@@ -1,0 +1,6 @@
+<% if flash[:success] %>
+	<%= flash[:success] %>
+<% end %>
+<%= @post.body %>
+<br>
+From: <%= @post.user.full_name %>
