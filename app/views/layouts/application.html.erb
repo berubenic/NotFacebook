@@ -52,13 +52,14 @@
 			  });
 			}
 		</script>
-		<% if user_signed_in? %>
-			<%= render 'shared/signed_in_nav' %>
-			<%= link_to "Edit profile", edit_user_registration_path %> |
-			<%= link_to "Logout", destroy_user_session_path, method: :delete  %>
-		<% else %>
-			<%= render 'shared/login_nav' %>
-		<% end %>
+		<nav>
+			<%= link_to image_tag('NotFacebook-logo.png', size: '120x100'), root_path %>
+			<% if user_signed_in? %>
+				<%= render 'shared/signed_in_nav' %>
+			<% else %>
+				<%= render 'shared/login_nav' %>
+			<% end %>
+		</nav>
 		<p class="notice"><%= notice %></p>
 		<p class="alert"><%= alert %></p>
 		<%= yield %>

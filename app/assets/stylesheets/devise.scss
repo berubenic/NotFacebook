@@ -1,0 +1,33 @@
+.devise-container {
+    grid-area: main;
+    text-align: center;
+}
+.devise-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    padding: 0.5em;
+}
+
+.actions {
+    padding: 0.5em;
+}
+
+.label {
+    padding: 0.5em 0em 0.5em 0em;
+}
+
+.devise-links{
+    display: flex;
+    flex-direction: column;
+}
+
+.devise-links a {
+    padding: 0.2em;
+}

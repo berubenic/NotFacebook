@@ -87,6 +87,24 @@
   /* ==========================================================================
      Author's custom styles
      ========================================================================== */
+
+  body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: 
+      "header header header header"
+      "flash flash flash flash"
+      ". main main ."
+  }
+
+  .notice {
+    grid-area: flash;
+  }
+  
+  .alert {
+    grid-area: flash;
+  }
   
   /* ==========================================================================
      Helper classes
