@@ -3,5 +3,7 @@ class FeedController < ApplicationController
 
   def index
     @user = current_user
+    @post = Post.new
+    @posts = Post.all
   end
 end

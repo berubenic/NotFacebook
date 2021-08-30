@@ -5,10 +5,8 @@ class PostsController < ApplicationController
 
   def create
     user = current_user
-    @post = Post.new(post_params)
-    @post.user = user
-    if @post.valid?
-      @post.save!
+    @post = user.posts.build(post_params)
+    if @post.save
       flash[:success] = 'Post succesfully created'
       redirect_to @post
     else

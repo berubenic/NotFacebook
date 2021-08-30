@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, length: { in: 2..20 }
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/,
                                                message: 'only allows letters' }
-  has_many :posts
+  has_many :posts, dependent: :delete_all
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
