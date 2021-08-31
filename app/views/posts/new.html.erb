@@ -1,10 +1,14 @@
-<h2>New Post</h2>
-<% if @post.errors.any? %>
-	<% @post.errors.full_messages.each do |message| %>
-		<h3><%= message %></h3>
+<div class='new-post-container'>
+	<h2>New Post</h2>
+	<% if @post.errors.any? %>
+		<% @post.errors.full_messages.each do |message| %>
+			<h3><%= message %></h3>
+		<% end %>
+	<% end%>
+	<%= form_with model: @post do |form| %>
+		<div class='new-post-form'>
+			<%= form.text_area :body, size: "60x10", class: 'new-post-input', placeholder: 'Let others know how you feel...' %>
+			<%= form.submit class: 'new-post-button' %>
+		</div>
 	<% end %>
-<% end%>
-<%= form_with model: @post do |form| %>
-	<%= form.text_area :body, size: "60x10" %>
-	<%= form.submit %>
-<% end %>
+</div>

@@ -1,9 +1,12 @@
-<% @posts.each do |post| %>
-	<%= post.user.full_name %>
-	<br>
-	<%= post.body %>
-	<br>
-	<%= post.created_at %>
-	<br>
-	<br>
-<% end %>
+<div class='posts-container'>
+	<h2>All Posts</h2>
+	<% @posts.each do |post| %>
+		<%= post.user.full_name %>
+		<br>
+		<%= post.body %>
+		<br>
+		<%= post.created_at %>
+		<br>
+		<br>
+	<% end %>
+</div>
