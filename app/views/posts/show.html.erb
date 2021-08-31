@@ -4,3 +4,7 @@
 <%= @post.body %>
 <br>
 From: <%= @post.user.full_name %>
+<% if @post.user == current_user %>
+	<%= link_to 'Edit', edit_post_path(@post) %>
+	<%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
