@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   get 'users/password', to: redirect('/')
 
   resources 'posts'
+
+  resources :friends, only: [:index], controller: 'users'
 end

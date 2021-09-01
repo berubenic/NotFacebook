@@ -11,6 +11,15 @@ class User < ApplicationRecord
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/,
                                                message: 'only allows letters' }
   has_many :posts, dependent: :delete_all
+  has_many :friendships
+  has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
+
+  def friends
+    sent_friendships = Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)
+    recieved_friendships = Friendship.where(friend_id: id, confirmed: true).pluck(:user_id)
+    ids = sent_friendships + recieved_friendships
+    User.where(id: ids)
+  end
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
