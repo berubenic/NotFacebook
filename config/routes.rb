@@ -8,4 +8,6 @@ Rails.application.routes.draw do
   resources 'posts'
 
   resources :friends, only: [:index], controller: 'users'
+
+  resources :friendships, only: [:create]
 end

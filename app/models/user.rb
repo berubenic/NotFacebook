@@ -21,6 +21,10 @@ class User < ApplicationRecord
     User.where(id: ids)
   end
 
+  def friend_with?(user)
+    Friendship.confirmed?(id, user.id)
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider
