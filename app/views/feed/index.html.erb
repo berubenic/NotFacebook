@@ -4,4 +4,8 @@
 	<% unless @posts.empty? %>
 		<%= render template: 'posts/index' %>
 	<% end %>
+	<%= @pending_requests.empty? %>
+	<% @pending_requests.each do |request| %>
+		<p><%=  request %></p>
+	<% end %>
 </div>

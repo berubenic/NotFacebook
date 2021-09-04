@@ -8,8 +8,10 @@ class Friendship < ApplicationRecord
   end
 
   def self.already_sent?(id1, id2)
-    case1 = !Friendship.where(user_id: id1, friend_id: id2).empty?
-    case2 = !Friendship.where(user_id: id2, friend_id: id1).empty?
-    case1 || case2
+    !Friendship.where(user_id: id1, friend_id: id2).empty?
+  end
+
+  def self.pending_accept?(id1, id2)
+    !Friendship.where(user_id: id2, friend_id: id1).empty?
   end
 end
