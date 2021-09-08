@@ -1,0 +1,6 @@
+<h2>Friends</h2>
+<br>
+<% @friends.each do |friend| %>
+	<p><%= friend.full_name %></p>
+	<%= button_to 'Remove Friend', friendship_path(friend.id), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
