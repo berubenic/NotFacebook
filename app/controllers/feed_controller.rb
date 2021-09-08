@@ -5,6 +5,6 @@ class FeedController < ApplicationController
     @user = current_user
     @post = Post.new
     @posts = Post.all
-    @pending_requests = User.find(current_user.pending_friendships.pluck(:user_id))
+    
   end
 end

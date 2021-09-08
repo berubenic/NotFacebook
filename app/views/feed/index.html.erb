@@ -1,13 +1,6 @@
 <div class='feed-container'>
-	<h1>Welcome <%= @user.full_name %></h1>
 	<%= render template: 'posts/new' %>
 	<% unless @posts.empty? %>
 		<%= render template: 'posts/index' %>
-	<% end %>
-	<h3>Pending Invites</h3>
-	<% @pending_requests.each do |request| %>
-		<p><%=  request.full_name %></p>
-		<%= button_to "Accept Invite", friendship_path(request.id), method: :patch %>
-		<%= button_to "Decline Invite", friendship_path(request.id), method: :delete, data: { confirm: 'Are you sure?' }%>
 	<% end %>
 </div>
