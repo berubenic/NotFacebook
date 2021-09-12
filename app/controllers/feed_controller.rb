@@ -5,6 +5,5 @@ class FeedController < ApplicationController
     @user = current_user
     @post = Post.new
     @posts = Post.all
-    
   end
 end

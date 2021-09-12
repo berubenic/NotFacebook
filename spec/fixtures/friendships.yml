@@ -1,0 +1,8 @@
+friendship_one:
+  user: user_one
+  friend: user_three
+  confirmed: false
+friendship_two:
+  user: user_four
+  friend: user_one
+  confirmed: false

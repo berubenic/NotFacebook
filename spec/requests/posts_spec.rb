@@ -6,7 +6,7 @@ RSpec.describe 'Posts', type: :request do
   describe '#new' do
     it 'has a 200 status code' do
       get '/posts/new'
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -19,7 +19,20 @@ RSpec.describe 'Posts', type: :request do
         }
       }
       post '/posts', params: post_params
+      expect(flash[:success]).to eq('Post succesfully created')
       expect(response).to have_http_status(302)
+    end
+
+    it 'does not create post with non-valid attributes' do
+      sign_in users(:user_one)
+      post_params = {
+        post: {
+          body: ''
+        }
+      }
+      post '/posts', params: post_params
+      expect(flash[:error]).to eq('Post is not valid')
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -27,7 +40,7 @@ RSpec.describe 'Posts', type: :request do
     it 'has a 200 status code' do
       post = posts(:first_post)
       get "/posts/#{post.id}"
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 
@@ -35,7 +48,7 @@ RSpec.describe 'Posts', type: :request do
     it 'has a 200 status code' do
       post = posts(:first_post)
       get "/posts/#{post.id}/edit"
-      expect(response).to have_http_status(:ok)
+      expect(response).to have_http_status(200)
     end
   end
 

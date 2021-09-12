@@ -2,3 +2,15 @@ user_one:
   email: 'userone@email.com'
   first_name: 'user'
   last_name: 'one'
+user_two:
+  email: 'usertwo@email.com'
+  first_name: 'user'
+  last_name: 'two'
+user_three:
+  email: 'userthree@email.com'
+  first_name: 'user'
+  last_name: 'three'
+user_four:
+  email: 'userfour@email.com'
+  first_name: 'user'
+  last_name: 'four'
