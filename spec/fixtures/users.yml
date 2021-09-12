@@ -14,3 +14,7 @@ user_four:
   email: 'userfour@email.com'
   first_name: 'user'
   last_name: 'four'
+user_five:
+  email: 'userfive@email.com'
+  first_name: 'user'
+  last_name: 'five'
