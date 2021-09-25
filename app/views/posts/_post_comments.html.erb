@@ -1,0 +1,8 @@
+<% if @comments.empty? %>
+    <p>No Comments</p>
+<% else %>
+  <% @comments.each do |comment| %>
+    <p><%= comment.user.full_name %></p>
+    <p><%= comment.body %></p>
+  <% end %>
+<% end %>
