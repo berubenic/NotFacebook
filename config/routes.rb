@@ -5,9 +5,10 @@ Rails.application.routes.draw do
   # FIX FOR refreshing users/password/new after error resulted in No Route Error
   get 'users/password', to: redirect('/')
 
-  resources 'posts'
+  resources 'posts' do
+    resources 'comments'
+  end
 
-  resources :comments, only: [:new, :create]
   resources :friends, only: [:index], controller: 'users'
 
   resources :friendships, only: %i[index create update destroy]

@@ -1,7 +1,8 @@
-<% if @comments.empty? %>
+<% if @comments.empty? || @comments.first.body.nil? %>
     <p>No Comments</p>
 <% else %>
   <% @comments.each do |comment| %>
+    <%= next if comment.body.nil? %>
     <p><%= comment.user.full_name %></p>
     <p><%= comment.body %></p>
   <% end %>
