@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources 'posts'
 
+  resources :comments, only: [:new, :create]
   resources :friends, only: [:index], controller: 'users'
 
   resources :friendships, only: %i[index create update destroy]
