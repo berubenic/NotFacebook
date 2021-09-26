@@ -26,9 +26,11 @@
 			<%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
 		</div>
 		<div class="actions">
-			<%= f.submit "Update" %>
+			<%= f.submit "Update", class: 'devise-button' %>
 		</div>
 	<% end %>
-	<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete %></p>
-	<%= link_to "Back", root_path %>
+	<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'devise-button' %></p>
+	<div class='devise-links'>
+		<%= link_to "Back", root_path %>
+	</div>
 </div>
