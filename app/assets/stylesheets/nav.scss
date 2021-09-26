@@ -1,16 +1,29 @@
-nav {
+.nav {
+    position: fixed;
     grid-area: header;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-evenly;
     align-items: center;
+    width: 100%;
+    background-color: white;
+    height: 3rem;
+    margin: 0;
+    padding: -5px;
 }
 
-nav a {
+.nav a {
     color: black;
 }
 
+.logo {
+    max-width: 185px;
+}
+
+.name {
+    display: none;
+}
 /* Sign in navbar */
 
 

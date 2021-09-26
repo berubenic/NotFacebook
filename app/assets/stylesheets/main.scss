@@ -90,15 +90,34 @@
 
   body {
     font-family: 'Source Sans Pro', sans-serif;
+    background-color: #F0F2F5;
+  }
+
+  .page-container {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  .content-wrap {
+    padding-bottom: 2.5rem;
+  }
+
+  .footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+  }
+
+  .flash-container {
+    display: flex;
   }
 
   .notice {
-    grid-area: flash;
     text-align: center;
   }
 
   .alert {
-    grid-area: flash;
     text-align: center;
   }
   

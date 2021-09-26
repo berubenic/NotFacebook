@@ -7,6 +7,7 @@
 		<%= csp_meta_tag %>
 		<%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
 		<link rel="stylesheet" type='text/css' href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&display=swap">
+		<script src="https://kit.fontawesome.com/56fe9a6546.js" crossorigin="anonymous"></script>
 		<%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
 	</head>
 	<body>
@@ -53,16 +54,34 @@
 			  });
 			}
 		</script>
-		<nav>
-			<%= link_to image_tag('NotFacebookLogo.svg', size: '120x100'), root_path %>
+		<div class='page-container'>
+			<div class='content-wrap'>
+				<nav class='nav'>
+					<%= link_to image_tag('NotFacebookLogo.svg', size: '355x46', class: 'logo'), root_path %>
+					<% if user_signed_in? %>
+						<%= render 'shared/signed_in_nav' %>
+					<% else %>
+						<%= render 'shared/login_nav' %>
+					<% end %>
+				</nav>
+				<section class='flash-container'>
+	    		    <p class="notice"><%= notice %></p>
+	    		    <p class="alert"><%= alert %></p>
+				</section>
+				<%= yield %>
+			</div>
 			<% if user_signed_in? %>
-				<%= render 'shared/signed_in_nav' %>
-			<% else %>
-				<%= render 'shared/login_nav' %>
+				<footer class='mobile footer'>
+					<%= link_to root_path do %>
+						<i class="fas fa-home fa-2x"></i>
+					<% end %>
+					<%= link_to friendships_path do %>
+						<i class="fas fa-users fa-2x"></i> 
+					<% end %>
+				</footer>		  
 			<% end %>
-		</nav>
-		<p class="notice"><%= notice %></p>
-		<p class="alert"><%= alert %></p>
-		<%= yield %>
+		</div>
+		
+		
 	</body>
 </html>
