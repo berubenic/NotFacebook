@@ -1,7 +1,7 @@
 <% if flash[:success] %>
 	<%= flash[:success] %>
 <% end %>
-<%= @post.body %>
+<p><%= @post.body %></p>
 <br>
 From: <%= @post.user.full_name %>
 <% if @post.user == current_user %>
