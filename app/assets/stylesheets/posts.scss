@@ -1,12 +1,16 @@
 // Place all the styles related to the Posts controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+@import 'variables';
+
 .new-post-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 1em;
-    width: 100%;
+    width: 80%;
+}
+.new-post-title {
+    color: $purple;
 }
 .new-post-form {
     display: flex;
@@ -14,31 +18,73 @@
     flex-wrap: wrap;
 }
 .new-post-input {
-  background-color: rgb(250, 220, 220);
+  background-color: $purple;
   height: 5em;
-  border: 0.15em solid rgb(182, 181, 181);
+  border: 1px solid $purple;
+  box-shadow: 1px 2px $shadow;
   border-radius: 0.3em;
   resize: none;
   width: 100%;
+  color: white;
+  font-weight: 500;
 }
 .new-post-button {
     width: 40%;
-    margin: 1em auto;
-    padding: 1em;
+    margin: 0.6em auto;
+    padding: 0.2em;
     color: white;
-    font-size: 1.2em;
-    background-color: rgb(223, 5, 5);
-    border-radius: 0.3em;
-    white-space: normal;
+    font-size: 1em;
+    font-weight: 600;
+    background-color: $red;
+    border-radius: 8px;
 }
 .posts-container {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     align-items: center;
-    padding: 1em;
-    width: 80%;
+    margin: 0 auto;
+    width: 100%;
 }
-.single-post-container {
+.posts-title {
+    color: $purple;
+}
+.post-container {
+    background-color: white;
+    width: 80%;
+    margin: 1em 0;
+    padding: 1em 0 0 0;
+    border-radius: 8px;
+    box-shadow: 1px 2px $shadow;
+}
+.post-header{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-left: 1em;
+}
+.post-author {
+    margin: 0;
+}
+.post-date {
+    margin: 0;
+    font-weight: 100;
+    color: #66676B;
+}
+.post-body {
+    margin: 3em 1em;
+}
+.post-footer {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    border-top: 1px solid #CFD0D4;
+    width: 95%;
+}
+
+.post-footer a {
+    color: #3083DC;
+    text-decoration: none;
     margin: 1em;
 }

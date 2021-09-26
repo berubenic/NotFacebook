@@ -1,5 +1,5 @@
 <div class='new-post-container'>
-	<h2>New Post</h2>
+	<h2 class='new-post-title'>New <i class="fas fa-sign new-post-icon"></i></h2>
 	<% if @post.errors.any? %>
 		<% @post.errors.full_messages.each do |message| %>
 			<h3><%= message %></h3>

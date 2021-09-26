@@ -1,6 +1,6 @@
 <%= form_with model: @post do |form| %>
 	<div class='new-post-form'>
 		<%= form.text_area :body, size: "60x10", class: 'new-post-input', placeholder: 'Let others know how you feel...' %>
-		<%= form.submit class: 'new-post-button' %>
+		<%= form.submit 'Create', class: 'new-post-button' %>
 	</div>
 <% end %>
