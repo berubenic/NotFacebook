@@ -1,17 +1,14 @@
 class CommentsController < ApplicationController
   def create
-    @post = Post.find(params[:post_id])
-    @comment = @post.comments.build(params[:comment].permit(:body, :user_id, :post_id))
-    @comment.user = current_user
-    if @comment.save
+    post = Post.find(params[:post_id])
+    comment = post.comments.build(params[:comment].permit(:body, :user_id, :post_id))
+    comment.user = current_user
+    if comment.save
       flash[:success] = 'Comment created!'
-      redirect_to @post
-
     else
       flash[:error] = 'Something went wrong!'
-      redirect_to @post
-
     end
+    redirect_to post
   end
 
   private
