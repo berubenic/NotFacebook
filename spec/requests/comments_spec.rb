@@ -32,4 +32,12 @@ RSpec.describe 'Comments', type: :request do
       expect(response).to have_http_status(302)
     end
   end
+  describe '#destroy' do
+    it 'destroys comment' do
+      post = posts(:first_post)
+      comment = comments(:first_comment)
+      delete "/posts/#{post.id}/comments/#{comment.id}"
+      expect(response).to have_http_status(302)
+    end
+  end
 end

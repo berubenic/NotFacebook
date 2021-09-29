@@ -10,7 +10,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, length: { in: 2..20 }
   validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/,
                                                message: 'only allows letters' }
-  has_many :posts, dependent: :delete_all
+  has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :friendships
   has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
