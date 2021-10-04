@@ -1,22 +1,10 @@
+<div class='feed-container'>
+<div class='new-post-container'>
+	<h2 class='new-post-title'>New <i class="fas fa-sign new-post-icon"></i></h2>
+	<%= render 'posts/form', post: @post %>
+	</div>
 <section class='posts-container'>
-	<h2 class='posts-title'>All <i class="fas fa-sign"></i></h2>
-	<% @posts.each do |post| %>
-		<div class='post-container'>
-			<div class='post-header'>
-				<h4 class='post-author'><%= post.user.full_name %></h4>
-				<h5 class='post-date'><%= post.created_at.strftime('%B %d %Y at %H:%M') %></h5>
-			</div>
-			<div class='post-body'>
-				<p><%= post.body %></p>
-			</div>
-			<div class='post-footer'>
-				<%= link_to 'View', post_path(post) %>
-				<% if post.user == current_user %>
-					<%= link_to 'Edit', edit_post_path(post) %>
-					<%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
-				<% end %>
-			</div>
-			
-		</div>
-	<% end %>
+
+	<%= render @posts %>
 </section>
+</div>

@@ -6,4 +6,6 @@ class Post < ApplicationRecord
 
   validates :body, presence: true
   validates :body, length: { minimum: 5, maximum: 1000 }
+
+  after_create_commit { broadcast_prepend_to :posts }
 end
