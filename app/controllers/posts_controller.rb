@@ -17,9 +17,6 @@ class PostsController < ApplicationController
         format.html { redirect_to posts_path }
       else
         flash[:error] = 'Post is not valid'
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(@post, partial: 'posts/form', locals: { post: @post })
-        end
         format.html { render :new }
       end
     end

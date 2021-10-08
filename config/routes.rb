@@ -5,11 +5,8 @@ Rails.application.routes.draw do
     authenticated :user do
       root 'posts#index', as: :authenticated_root
     end
-
-    unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
-    end
   end
+  root 'devise/sessions#new'
   # FIX FOR refreshing users/password/new after error resulted in No Route Error
   get 'users/password', to: redirect('/')
 
