@@ -28,7 +28,10 @@
 		</div>
 		<% end %>
 		<div class='field'>
-			<%= image_tag current_user.profile_image if current_user.profile_image.attached? %>
+			<% if current_user.profile_image.attached? %>
+				<%= image_tag current_user.profile_image %>
+				<%= link_to 'Remove Profile Image', delete_profile_image_path, data: { confirm: 'Are you sure?'} %>
+			<% end %>
 			<%= f.label :profile_image %>
 			<%= f.file_field :profile_image %>
 		</div>

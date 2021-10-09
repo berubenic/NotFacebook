@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   root 'devise/sessions#new'
   # FIX FOR refreshing users/password/new after error resulted in No Route Error
   get 'users/password', to: redirect('/')
-
+  match 'delete_profile_image', to: 'users#delete_profile_image', via: [:get]
   resources 'posts' do
     resources 'comments'
   end
