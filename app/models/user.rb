@@ -15,6 +15,8 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
 
+  has_one_attached :profile_image
+
   def friends
     sent_friendships = Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)
     recieved_friendships = Friendship.where(friend_id: id, confirmed: true).pluck(:user_id)

@@ -25,6 +25,11 @@
 			<%= f.label :current_password, class: 'label' %> <i class='label'>(we need your current password to confirm your changes)</i><br />
 			<%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
 		</div>
+		<div class='field'>
+			<%= image_tag current_user.profile_image if current_user.profile_image.attached? %>
+			<%= f.label :profile_image %>
+			<%= f.file_field :profile_image %>
+		</div>
 		<div class="actions">
 			<%= f.submit "Update", class: 'devise-button' %>
 		</div>
