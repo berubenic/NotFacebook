@@ -21,10 +21,12 @@
 			<%= f.label :password_confirmation, class: 'label' %><br />
 			<%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
 		</div>
+		<% unless current_user.provider == 'facebook' %>
 		<div class="field">
 			<%= f.label :current_password, class: 'label' %> <i class='label'>(we need your current password to confirm your changes)</i><br />
 			<%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
 		</div>
+		<% end %>
 		<div class='field'>
 			<%= image_tag current_user.profile_image if current_user.profile_image.attached? %>
 			<%= f.label :profile_image %>
