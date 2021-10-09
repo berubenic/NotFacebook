@@ -16,6 +16,17 @@ class User < ApplicationRecord
   has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
 
   has_one_attached :profile_image
+  validate :acceptable_image
+
+  def acceptable_image
+    return unless profile_image.attached?
+
+    errors.add(:profile_image, 'is too big') unless profile_image.byte_size <= 1.megabyte
+
+    acceptable_types = ['image/jpeg', 'image/png']
+
+    errors.add(:profile_image, 'must be a JPEG or PNG') unless acceptable_types.include?(profile_image.content_type)
+  end
 
   def friends
     sent_friendships = Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)
