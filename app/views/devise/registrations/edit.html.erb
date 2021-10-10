@@ -29,7 +29,7 @@
 		<% end %>
 		<div class='field'>
 			<% if current_user.profile_image.attached? %>
-				<%= image_tag current_user.profile_image %>
+				<%= image_tag current_user.profile_image.variant(resize_to_limit: [100, nil]), width: '100px', height: 'auto'%>
 				<%= link_to 'Remove Profile Image', delete_profile_image_path, data: { confirm: 'Are you sure?'} %>
 			<% end %>
 			<%= f.label :profile_image %>
