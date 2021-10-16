@@ -2,5 +2,9 @@ example_id                                               | status | run_time    
 -------------------------------------------------------- | ------ | --------------- |
 ./spec/features/user_submits_sign_up_form_spec.rb[1:1:1] | passed | 0.08334 seconds |
 ./spec/features/user_submits_sign_up_form_spec.rb[1:2:1] | passed | 0.28665 seconds |
-./spec/models/user_spec.rb[1:1]                          | passed | 0.00103 seconds |
-./spec/models/user_spec.rb[2:1]                          | passed | 0.06839 seconds |
+./spec/models/user_spec.rb[1:1]                          | passed | 0.00113 seconds |
+./spec/models/user_spec.rb[2:1]                          | passed | 0.01499 seconds |
+./spec/models/user_spec.rb[2:2]                          | passed | 0.02288 seconds |
+./spec/models/user_spec.rb[3:1]                          | passed | 0.02862 seconds |
+./spec/models/user_spec.rb[4:1]                          | passed | 0.03758 seconds |
+./spec/models/user_spec.rb[4:2]                          | passed | 0.16537 seconds |
