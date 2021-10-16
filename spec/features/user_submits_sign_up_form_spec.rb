@@ -3,20 +3,17 @@ require 'rails_helper'
 RSpec.feature 'User submits a form' do
   context 'the form is valid' do
     scenario 'they see the page with the form' do
-      user_email = 'joe_picket@email.com'
-      user_first_name = 'Joe'
-      user_last_name = 'Picket'
-      user_password = 'somehardcorepassword1234!'
+      user = build(:user)
 
       visit root_path
 
       click_on 'Sign up', match: :first
 
-      fill_in 'user_email', with: user_email
-      fill_in 'user_first_name', with: user_first_name
-      fill_in 'user_last_name', with: user_last_name
-      fill_in 'user_password', with: user_password
-      fill_in 'user_password_confirmation', with: user_password
+      fill_in 'user_email', with: user.email
+      fill_in 'user_first_name', with: user.first_name
+      fill_in 'user_last_name', with: user.last_name
+      fill_in 'user_password', with: user.password
+      fill_in 'user_password_confirmation', with: user.password
 
       find('input[type="submit"]').click
 
@@ -26,19 +23,16 @@ RSpec.feature 'User submits a form' do
 
   context 'the form is invalid' do
     scenario 'they see the page with the form' do
-      user_email = 'joe_picket@email.com'
-      user_first_name = 'Joe'
-      user_last_name = 'Picket'
-      user_password = 'somehardcorepassword1234!'
+      user = create(:user)
 
       visit root_path
 
       click_on 'Sign up', match: :first
 
-      fill_in 'user_email', with: user_email
-      fill_in 'user_first_name', with: user_first_name
-      fill_in 'user_last_name', with: user_last_name
-      fill_in 'user_password', with: user_password
+      fill_in 'user_email', with: user.email
+      fill_in 'user_first_name', with: user.first_name
+      fill_in 'user_last_name', with: user.last_name
+      fill_in 'user_password', with: user.password
 
       find('input[type="submit"]').click
 
