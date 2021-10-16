@@ -1,90 +1,59 @@
-# frozen_string_literal: true
-
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  subject do
-    described_class.new(first_name: 'Homer',
-                        last_name: 'Simpson')
+RSpec.describe User, '#full_name' do
+  it 'returns first_name and last_name' do
+    user = User.new(first_name: 'Joe', last_name: 'Picket')
+    expect(user.full_name).to eq 'Joe Picket'
   end
-  describe '#first_name' do
-    it 'validates_presence' do
-      subject.first_name = ''
-      subject.validate
-      expect(subject.errors[:first_name]).to include("can't be blank")
+end
 
-      subject.first_name = 'Homer'
-      subject.validate
-      expect(subject.errors[:first_name]).to_not include("can't be blank")
-    end
-
-    it 'validates_length' do
-      subject.first_name = 'H'
-      subject.validate
-      expect(subject.errors[:first_name]).to include('is too short (minimum is 2 characters)')
-
-      subject.first_name = 'Homer'
-      subject.validate
-      expect(subject.errors[:first_name]).to_not include('is too short (minimum is 2 characters)')
-
-      subject.first_name = 'Hooooooooooooooooomer'
-      subject.validate
-      expect(subject.errors[:first_name]).to include('is too long (maximum is 20 characters)')
-
-      subject.first_name = 'Homer'
-      subject.validate
-      expect(subject.errors[:first_name]).to_not include('is too long (maximum is 20 characters)')
-    end
-
-    it 'validates_format' do
-      subject.first_name = '1'
-      subject.validate
-      expect(subject.errors[:first_name]).to include('only allows letters')
-
-      subject.first_name = '!'
-      subject.validate
-      expect(subject.errors[:first_name]).to include('only allows letters')
-
-      subject.first_name = 'Homer'
-      subject.validate
-      expect(subject.errors[:first_name]).to_not include('only allows letters')
-    end
+RSpec.describe User, '#friend_with?' do
+  it 'returns true if friends with passed user' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    possible_friend = create(:user, first_name: 'Jack', last_name: 'Sparrow')
+    create(:friendship, user: user, friend: possible_friend, confirmed: true)
+    expect(user.friend_with?(possible_friend)).to eq true
   end
 
-  describe '#last_name' do
-    it 'validates_presence' do
-      subject.last_name = ''
-      subject.validate
-      expect(subject.errors[:last_name]).to include("can't be blank")
+  it 'returns false if not friends with passed user' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    possible_friend = create(:user, first_name: 'Jack', last_name: 'Sparrow')
+    create(:friendship, user: user, friend: possible_friend, confirmed: false)
+    expect(user.friend_with?(possible_friend)).to eq false
+  end
+end
 
-      subject.last_name = 'Simpson'
-      subject.validate
-      expect(subject.errors[:last_name]).to_not include("can't be blank")
-    end
+RSpec.describe User, '#friends' do
+  it 'returns a collection of friends' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    friend_one = create(:user, first_name: 'Jack')
+    friend_two = create(:user, first_name: 'Alice')
+    stranger_one = create(:user, first_name: 'Stranger')
 
-    it 'validates_length' do
-      subject.last_name = 'S'
-      subject.validate
-      expect(subject.errors[:last_name]).to include('is too short (minimum is 2 characters)')
+    create(:friendship, user: user, friend: friend_one, confirmed: true)
+    create(:friendship, user: friend_two, friend: user, confirmed: true)
+    create(:friendship, user: user, friend: stranger_one, confirmed: false)
 
-      subject.last_name = 'Simpson'
-      subject.validate
-      expect(subject.errors[:last_name]).to_not include('is too short (minimum is 2 characters)')
+    result = user.friends
 
-      subject.last_name = 'Siiiiiiiiiiiiiiimpson'
-      subject.validate
-      expect(subject.errors[:last_name]).to include('is too long (maximum is 20 characters)')
+    expect(result).to eq [friend_one, friend_two]
+    expect(result).not_to include(stranger_one)
+  end
+end
 
-      subject.last_name = 'Simpson'
-      subject.validate
-      expect(subject.errors[:last_name]).to_not include('is too long (maximum is 20 characters)')
-    end
+RSpec.describe User, '#acceptable_image' do
+  it 'adds errors if image is too big' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    user.profile_image.attach(io: File.open('./app/assets/images/spec/too_big.png'), filename: 'too_big.png')
+
+    expect(user.errors.full_messages).to include('Profile image is too big')
   end
 
-  describe '#full_name' do
-    it 'returns correct full_name' do
-      correct_full_name = 'Homer Simpson'
-      expect(subject.full_name).to eq(correct_full_name)
-    end
+  it 'adds errors if image is wrong type' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    user.profile_image.attach(io: File.open('./app/assets/images/spec/wrong_type.fig'), filename: 'wrong_type.fig')
+    puts user.profile_image.content_type
+
+    expect(user.errors.full_messages).to include('Profile image must be a JPEG or PNG')
   end
 end
