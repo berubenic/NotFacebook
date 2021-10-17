@@ -43,7 +43,6 @@ RSpec.feature 'User submits the edit form' do
 
       click_on 'Update'
 
-      user = User.first
       expect(page).to have_content "Current password can't be blank"
     end
   end
