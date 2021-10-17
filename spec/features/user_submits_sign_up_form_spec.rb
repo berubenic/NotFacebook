@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.feature 'User submits a form' do
+RSpec.feature 'User submits the sign up form' do
   context 'the form is valid' do
     scenario 'they see the page with the form' do
       user = build(:user)
