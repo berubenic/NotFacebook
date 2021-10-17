@@ -15,3 +15,18 @@ RSpec.describe Friendship, '.confirmed?' do
     expect(Friendship.confirmed?(user.id, friend.id)).to eq false
   end
 end
+
+RSpec.describe Friendship, '.already_sent?' do
+  it 'returns true if friendship request has already been sent' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    sent_friend = create(:user, first_name: 'Jack', last_name: 'Sparrow')
+    create(:friendship, user: user, friend: sent_friend, confirmed: false)
+    expect(Friendship.already_sent?(user.id, sent_friend.id)).to eq true
+  end
+
+  it 'returns false if friendship has not been sent' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    stranger = create(:user, first_name: 'Jack', last_name: 'Sparrow')
+    expect(Friendship.already_sent?(user.id, stranger.id)).to eq false
+  end
+end
