@@ -57,3 +57,40 @@ RSpec.describe User, '#acceptable_image' do
     expect(user.errors.full_messages).to include('Profile image must be a JPEG or PNG')
   end
 end
+
+RSpec.describe User, '.from_omniauth' do
+  let(:auth_hash) do
+    OmniAuth::AuthHash.new({
+                             provider: 'facebook',
+                             uid: '1234',
+                             info: {
+                               email: 'email@email.com',
+                               name: 'Joe Picket'
+                             }
+                           })
+  end
+  it 'retrieves an existing user' do
+    user = User.new(
+      provider: 'facebook',
+      uid: '1234',
+      email: 'email@email.com',
+      password: 'password',
+      password_confirmation: 'password',
+      first_name: 'Joe',
+      last_name: 'Picket'
+    )
+    user.save
+
+    omniauth_user = User.from_omniauth(auth_hash)
+
+    expect(user).to eq(omniauth_user)
+  end
+
+  it 'creates a new user if one does not exist' do
+    expect(User.count).to eq(0)
+
+    User.from_omniauth(auth_hash)
+
+    expect(User.count).to eq(1)
+  end
+end
