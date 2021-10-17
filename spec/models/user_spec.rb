@@ -1,5 +1,22 @@
 require 'rails_helper'
 
+RSpec.describe User, 'validations' do
+  it { is_expected.to validate_presence_of(:first_name) }
+  it { is_expected.to validate_presence_of(:last_name) }
+  # length
+  it { is_expected.to validate_length_of(:first_name) }
+  it { is_expected.to allow_value('Jo').for(:first_name) }
+  it { is_expected.to_not allow_value('J').for(:first_name) }
+  it { is_expected.to validate_length_of(:last_name) }
+  it { is_expected.to allow_value('Jo').for(:last_name) }
+  it { is_expected.to_not allow_value('J').for(:last_name) }
+  # format
+  it { is_expected.to_not allow_value('12').for(:first_name) }
+  it { is_expected.to_not allow_value('1Jo').for(:first_name) }
+  it { is_expected.to_not allow_value('12').for(:last_name) }
+  it { is_expected.to_not allow_value('1Jo').for(:last_name) }
+end
+
 RSpec.describe User, '#full_name' do
   it 'returns first_name and last_name' do
     user = User.new(first_name: 'Joe', last_name: 'Picket')
