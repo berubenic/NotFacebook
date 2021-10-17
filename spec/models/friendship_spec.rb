@@ -30,3 +30,18 @@ RSpec.describe Friendship, '.already_sent?' do
     expect(Friendship.already_sent?(user.id, stranger.id)).to eq false
   end
 end
+
+RSpec.describe Friendship, '.pending_accept?' do
+  it 'returns true if user has a pending friendship request with given user' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    pending_friend = create(:user, first_name: 'Jack', last_name: 'Sparrow')
+    create(:friendship, user: pending_friend, friend: user, confirmed: false)
+    expect(Friendship.pending_accept?(user.id, pending_friend.id)).to eq true
+  end
+
+  it 'returns false if user does not have a pending friendship request with given user' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    stranger = create(:user, first_name: 'Jack', last_name: 'Sparrow')
+    expect(Friendship.pending_accept?(user.id, stranger.id)).to eq false
+  end
+end
