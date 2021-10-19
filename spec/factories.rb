@@ -11,4 +11,9 @@ FactoryBot.define do
     association :friend, factory: :user
     confirmed { false }
   end
+
+  factory :post do
+    user
+    body { 'I am a body' }
+  end
 end
