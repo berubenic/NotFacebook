@@ -13,10 +13,10 @@ class PostsController < ApplicationController
     @post = user.posts.build(post_params)
     respond_to do |format|
       if @post.save
-        flash[:success] = 'Post succesfully created'
+        flash[:notice] = 'Post successfully created'
         format.html { redirect_to posts_path }
       else
-        flash[:error] = 'Post is not valid'
+        flash[:alert] = 'Post is not valid'
         format.html { render :new }
       end
     end
