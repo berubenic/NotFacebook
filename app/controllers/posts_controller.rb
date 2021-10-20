@@ -50,6 +50,6 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, comments_attributes: %i[id body user_id post_id])
+    params.require(:post).permit(:body, :post_image, comments_attributes: %i[id body user_id post_id])
   end
 end

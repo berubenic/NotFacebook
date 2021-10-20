@@ -5,6 +5,9 @@
 	</div>
 	<div class='post-body'>
 		<p><%= post.body %></p>
+		<% if post.post_image.attached? %>
+			<%= image_tag post.post_image.variant(resize_to_limit: [200, nil]), width: '200px', height: 'auto' %>
+		<% end %>
 	</div>
 	<div class='post-footer'>
 		<%if post.user == current_user %>
