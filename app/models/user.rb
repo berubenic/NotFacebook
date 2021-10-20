@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  include ImageValidator
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[facebook]
@@ -17,7 +16,7 @@ class User < ApplicationRecord
   has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
 
   has_one_attached :profile_image
-  validate :acceptable_image
+  validates_with ImageValidator, fields: { attribute_name: :profile_image }
 
   def friends
     sent_friendships = Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)

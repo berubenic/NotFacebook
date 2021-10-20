@@ -8,7 +8,7 @@ class Post < ApplicationRecord
   validates :body, length: { minimum: 5, maximum: 1000 }
 
   has_one_attached :post_image
-  validate :acceptable_image
+  validates_with ImageValidator, fields: { attribute_name: :post_image }
 
   def acceptable_image
     return unless post_image.attached?

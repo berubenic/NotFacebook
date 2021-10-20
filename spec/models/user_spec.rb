@@ -69,7 +69,6 @@ RSpec.describe User, '#acceptable_image' do
   it 'adds errors if image is wrong type' do
     user = create(:user, first_name: 'Joe', last_name: 'Picket')
     user.profile_image.attach(io: File.open(Rails.root + 'spec/fixtures/wrong_type.fig'), filename: 'wrong_type.fig')
-    puts user.profile_image.content_type
 
     expect(user.errors.full_messages).to include('Profile image must be a JPEG or PNG')
   end
