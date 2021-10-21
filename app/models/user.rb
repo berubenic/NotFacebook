@@ -29,6 +29,16 @@ class User < ApplicationRecord
     Friendship.confirmed?(id, user.id)
   end
 
+  def pending_friend_requests_sent
+    pending_friends_ids = Friendship.where(user_id: id, confirmed: false).pluck(:friend_id)
+    User.where(id: pending_friends_ids)
+  end
+
+  def pending_friend_requests_recieved
+    pending_friends_ids = Friendship.where(friend_id: id, confirmed: false).pluck(:user_id)
+    User.where(id: pending_friends_ids)
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider

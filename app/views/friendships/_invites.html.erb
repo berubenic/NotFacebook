@@ -1,6 +1,0 @@
-<h3>Pending Invites</h3>
-<% @pending_requests.each do |request| %>
-	<p><%=  request.full_name %></p>
-	<%= button_to "Accept Invite", friendship_path(request.id), method: :patch %>
-	<%= button_to "Decline Invite", friendship_path(request.id), method: :delete, data: { confirm: 'Are you sure?' }%>
-<% end %>

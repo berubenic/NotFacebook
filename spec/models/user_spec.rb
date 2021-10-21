@@ -110,3 +110,33 @@ RSpec.describe User, '.from_omniauth' do
     expect(User.count).to eq(1)
   end
 end
+
+RSpec.describe User, '#pending_friend_requests_sent' do
+  it 'returns a collection of pending friends' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    friend_one = create(:user, first_name: 'Jack')
+    friend_two = create(:user, first_name: 'Alice')
+
+    create(:friendship, user: user, friend: friend_one, confirmed: false)
+    create(:friendship, user: user, friend: friend_two, confirmed: false)
+
+    result = user.pending_friend_requests_sent
+
+    expect(result).to eq [friend_one, friend_two]
+  end
+end
+
+RSpec.describe User, '#pending_friend_requests_recieved' do
+  it 'returns a collection of pending friends' do
+    user = create(:user, first_name: 'Joe', last_name: 'Picket')
+    friend_one = create(:user, first_name: 'Jack')
+    friend_two = create(:user, first_name: 'Alice')
+
+    create(:friendship, user: friend_one, friend: user, confirmed: false)
+    create(:friendship, user: friend_two, friend: user, confirmed: false)
+
+    result = user.pending_friend_requests_recieved
+
+    expect(result).to eq [friend_one, friend_two]
+  end
+end

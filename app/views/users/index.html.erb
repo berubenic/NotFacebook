@@ -1,0 +1,9 @@
+<ul>
+<% @strangers.each do |user| %>
+    <% unless @friends_sent.include?(user) || @friends_recieved.include?(user) || user == current_user%>
+    <li><%= user.full_name %></li>
+    <%= button_to 'Add Friend', { controller: 'friendships', action: 'create', user_id: current_user.id, friend_id: user.id }, method: :post %>
+    <% end %>
+<% end %>
+</ul>
+
