@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
     user = current_user
+    @friends = user.friends
     @friends_sent = user.pending_friend_requests_sent
     @friends_recieved = user.pending_friend_requests_recieved
     @strangers = User.all

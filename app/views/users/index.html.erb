@@ -1,9 +1,33 @@
+<h2>Find Friends</h2>
 <ul>
 <% @strangers.each do |user| %>
-    <% unless @friends_sent.include?(user) || @friends_recieved.include?(user) || user == current_user%>
-    <li><%= user.full_name %></li>
-    <%= button_to 'Add Friend', { controller: 'friendships', action: 'create', user_id: current_user.id, friend_id: user.id }, method: :post %>
+    <% unless @friends_sent.include?(user) || @friends_recieved.include?(user) || user == current_user || @friends.include?(user) %>
+        <li><%= user.full_name %></li>
+        <%= button_to 'Add Friend', { controller: 'friendships', action: 'create', user_id: current_user.id, friend_id: user.id }, method: :post %>
     <% end %>
 <% end %>
 </ul>
+<h2>Friend Requests Sent</h2>
+<ul>
+<% @friends_sent.each do |user| %>
+    <li><%= user.full_name %></li>
+<% end %>
+</ul>
+<h2>Friends</h2>
+<ul>
+<% @friends.each do |user| %>
+    <li><%= user.full_name %></li>
+<% end %>
+</ul>
+<h2>Pending Requests</h2>
+<ul>
+<% @friends_recieved.each do |user| %>
+    <li><%= user.full_name %></li>
+    <li>
+        <%= button_to 'Accept Request', friendship_path(user.id), method: :patch %>
+        <%= button_to 'Decline Request', friendship_path(user.id), method: :delete %>
+    </li>
+<% end %>
+</ul>
+
 
