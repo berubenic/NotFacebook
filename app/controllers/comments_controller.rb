@@ -4,9 +4,9 @@ class CommentsController < ApplicationController
     comment = post.comments.build(params[:comment].permit(:body, :user_id, :post_id))
     comment.user = current_user
     if comment.save
-      flash[:success] = 'Comment created!'
+      flash[:notice] = 'Comment created!'
     else
-      flash[:error] = 'Something went wrong!'
+      flash[:alert] = 'Something went wrong!'
     end
     redirect_to post
   end
