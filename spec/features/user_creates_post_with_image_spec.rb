@@ -35,7 +35,7 @@ RSpec.feature 'User creates post with image' do
       attach_file('Add Image', Rails.root + 'spec/fixtures/too_big.png')
 
       click_on 'Post'
-      expect(page).to_not have_css("img[src*='too_big.png']")
+      expect(page).to have_content 'Post image is too big'
     end
   end
 end
