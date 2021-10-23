@@ -65,13 +65,13 @@
 						<%= render 'shared/login_nav' %>
 					<% end %>
 				</nav>
-				<section class='flash-container'>
+				<section class=''>
 	    		    <p class="notice"><%= notice %></p>
 	    		    <p class="alert"><%= alert %></p>
 				</section>
-				<div class='feed-container'>
+				<main class=''>
 					<%= yield %>
-				</div>
+				</main>
 			</div>
 			<% if user_signed_in? %>
 				<footer class='footer'>

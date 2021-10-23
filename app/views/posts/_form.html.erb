@@ -1,8 +1,6 @@
-<%= form_with model: @post do |form| %>
-	<div class='new-post-form'>
-		<%= form.text_area :body, size: "60x10", class: 'new-post-input', placeholder: 'Let others know how you feel...' %>
-		<%= form.submit 'Post', class: 'new-post-button' %>
-		<%= form.label :post_image %>
-		<%= form.file_field :post_image %>
-	</div>
+<%= form_with model: @post, class: 'post-form-container' do |form| %>
+	<%= form.text_area :body, class: 'post-input', placeholder: 'Let others know how you feel...' %>
+	<%= form.label :post_image, 'Add Image', class: 'post-label' %>
+	<%= form.file_field :post_image, class: 'browse-image-input' %>
+	<%= form.submit 'Post', class: 'post-button' %>
 <% end %>

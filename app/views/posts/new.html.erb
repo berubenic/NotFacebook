@@ -1,5 +1,5 @@
-	<div class='new-post-container'>
-		<h2 class='new-post-title'>New <i class="fas fa-sign new-post-icon"></i></h2>
+	<div class='post-container'>
+		<h2 class='post-title'>New <i class="fas fa-sign"></i></h2>
 		<% if @post.errors.any? %>
 			<% @post.errors.full_messages.each do |message| %>
 				<h3><%= message %></h3>

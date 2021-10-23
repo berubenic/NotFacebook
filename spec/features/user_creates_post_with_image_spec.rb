@@ -13,7 +13,7 @@ RSpec.feature 'User creates post with image' do
       find('input[type="submit"]').click
 
       fill_in 'post_body', with: 'My first image'
-      attach_file('Post image', Rails.root + 'spec/fixtures/green.png')
+      attach_file('Add Image', Rails.root + 'spec/fixtures/green.png')
 
       click_on 'Post'
       expect(page).to have_css("img[src*='green.png']")
@@ -32,7 +32,7 @@ RSpec.feature 'User creates post with image' do
       find('input[type="submit"]').click
 
       fill_in 'post_body', with: 'My first image'
-      attach_file('Post image', Rails.root + 'spec/fixtures/too_big.png')
+      attach_file('Add Image', Rails.root + 'spec/fixtures/too_big.png')
 
       click_on 'Post'
       expect(page).to_not have_css("img[src*='too_big.png']")
