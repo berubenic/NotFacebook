@@ -19,7 +19,7 @@ RSpec.feature 'User deletes a comment' do
       fill_in 'comment_body', with: 'I am a comment'
       click_on 'Create Comment'
 
-      click_on 'Delete Comment'
+      page.find('a:eq(2)', text: 'Delete').click
 
       expect(page).to_not have_content 'I am a comment'
     end
@@ -41,7 +41,7 @@ RSpec.feature 'User deletes a comment' do
       fill_in 'comment_body', with: 'I am a comment'
       click_on 'Create Comment'
 
-      click_on 'Delete Comment'
+      click_on 'Delete'
 
       expect(page).to_not have_content 'I am a comment'
     end

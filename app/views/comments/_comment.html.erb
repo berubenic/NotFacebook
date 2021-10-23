@@ -1,5 +1,15 @@
-<p><%= comment.user.full_name %></p>
-<p><%= comment.body %></p>
-<% if comment.user == current_user %>
-  <%= link_to 'Delete Comment', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% if comment.user %>
+  <div class='comment-container'>
+    <div class='comment-header'>
+      <p><%= comment.user.full_name %></p>
+    </div>
+    <div class='comment-body'>
+      <p><%= comment.body %></p>
+    </div>
+    <div class='comment-actions'>
+      <% if comment.user == current_user %>
+        <%= link_to 'Delete', post_comment_path(@post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

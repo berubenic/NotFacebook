@@ -1,7 +1,7 @@
 <% if flash[:error] %>
-    <p><%= flash[:error] %></p>
+  <p><%= flash[:error] %></p>
 <% end %>
-<%= form_with model: ([@post, @post.comments.build]) do |form| %>
-    <%= form.text_area :body, size: "50x1" %>
-    <%= form.submit %>
+<%= form_with model: ([@post, @post.comments.build]), class: 'comment-form-container' do |form| %>
+  <%= form.text_area :body, size: "50x1", class: 'comment-input' %>
+  <%= form.submit class: 'comment-button' %>
 <% end %>
