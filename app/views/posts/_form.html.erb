@@ -1,6 +1,9 @@
 <%= form_with model: @post, class: 'post-form-container' do |form| %>
-	<%= form.text_area :body, class: 'post-input', placeholder: 'Let others know how you feel...' %>
-	<%= form.label :post_image, 'Add Image', class: 'post-label' %>
-	<%= form.file_field :post_image, class: 'browse-image-input' %>
-	<%= form.submit 'Post', class: 'post-button' %>
+  <%= form.text_area :body, class: 'post-input', placeholder: 'Let others know how you feel...' %>
+  <%= form.label :post_image, 'Add Image', class: 'post-label' %>
+  <% if @post.post_image.attached? %>
+    <%= image_tag @post.post_image.variant(resize_to_limit: [200, nil]), width: '200px', height: 'auto', class: 'post-image' %>
+  <% end %>
+  <%= form.file_field :post_image, class: 'browse-image-input' %>
+  <%= form.submit 'Post', class: 'post-button' %>
 <% end %>

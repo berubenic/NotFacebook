@@ -1,2 +1,7 @@
-    <h2>Edit <i class="fas fa-sign new-post-icon"></i></h2>
-    <%= render 'form' %>
+<h2>Edit <i class="fas fa-sign new-post-icon"></i></h2>
+<% if @post.errors.any? %>
+  <% @post.errors.full_messages.each do |message| %>
+    <h3 class='error-message'><%= message %></h3>
+  <% end %>
+<% end%>
+<%= render 'form' %>
