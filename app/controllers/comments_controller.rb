@@ -15,6 +15,7 @@ class CommentsController < ApplicationController
     comment = Comment.find(params[:id])
     post = comment.post
     comment.destroy
+    flash[:notice] = 'Comment deleted!'
     redirect_to post
   end
 

@@ -1,0 +1,16 @@
+@import 'variables';
+
+.flash-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1em;
+}
+
+.notice {
+    color: $green;
+}
+
+.alert {
+    color: $red;
+}
