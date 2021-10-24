@@ -15,9 +15,9 @@ RSpec.feature 'User unlikes a comment' do
 
       find('input[type="submit"]').click
 
-      click_on 'Unlike Comment'
+      click_on 'Unlike'
 
-      expect(page).to have_content 'Like Comment (0 Likes)'
+      expect(page).to have_content 'Like (0 Likes)'
     end
   end
 end

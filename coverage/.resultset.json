@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/nicholas/odin/NotFacebook/spec/features/user_unlikes_a_comment_spec.rb": {
+      "/home/nicholas/odin/NotFacebook/spec/features/user_likes_a_comment_spec.rb": {
         "lines": [
           1,
           null,
@@ -11,7 +11,6 @@
           1,
           1,
           1,
-          1,
           null,
           1,
           null,
@@ -21,6 +20,8 @@
           1,
           null,
           1,
+          1,
+          null,
           null,
           1,
           null,
@@ -872,10 +873,10 @@
         "lines": [
           1,
           1,
-          3,
-          3,
-          3,
-          3,
+          2,
+          2,
+          2,
+          2,
           null,
           null,
           1,
@@ -886,7 +887,7 @@
           null,
           1,
           1,
-          3,
+          2,
           null,
           null,
           1,
@@ -979,7 +980,7 @@
           1,
           2,
           null,
-          2,
+          1,
           null,
           null,
           1,
@@ -1018,8 +1019,8 @@
         "lines": [
           1,
           1,
-          4,
-          4,
+          2,
+          2,
           null,
           0,
           null,
@@ -1118,15 +1119,6 @@
           1,
           1,
           null,
-          1,
-          null
-        ]
-      },
-      "/home/nicholas/odin/NotFacebook/app/models/like.rb": {
-        "lines": [
-          1,
-          1,
-          1,
           1,
           null
         ]
@@ -1237,21 +1229,38 @@
           null
         ]
       },
+      "/home/nicholas/odin/NotFacebook/app/models/like.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/nicholas/odin/NotFacebook/app/controllers/likes_controller.rb": {
         "lines": [
           1,
           1,
-          0,
+          1,
+          null,
+          1,
+          1,
           null,
           0,
           0,
           null,
-          0,
-          0,
-          null,
-          0,
+          1,
           0,
           null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
           0,
           0,
           null,
@@ -1275,22 +1284,14 @@
           null,
           null,
           1,
-          1,
-          1,
-          1,
           null,
           1,
-          null,
-          null,
           1,
-          null,
-          1,
-          0,
           null,
           null
         ]
       }
     },
-    "timestamp": 1635100953
+    "timestamp": 1635117198
   }
 }

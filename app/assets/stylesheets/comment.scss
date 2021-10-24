@@ -1,3 +1,5 @@
+@import 'variables';
+
 .comment-form-container {
     width: 90%;
     display: flex;
@@ -72,6 +74,15 @@
 
 .comments-container>* {
     margin: 0.2em 0;
+}
+
+.comment-actions a {
+    color: $blue;
+    text-decoration: none;
+}
+
+.comment-date {
+    font-weight: lighter;
 }
 
 @media only screen and (min-width: 850px) {
