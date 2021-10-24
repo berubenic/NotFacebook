@@ -1,11 +1,12 @@
 require 'rails_helper'
 
-RSpec.feature 'User likes a comment' do
+RSpec.feature 'User unlikes a comment' do
   context 'user is on the home page' do
-    scenario 'they like a  comment' do
+    scenario 'they ulike a  comment' do
       user = create(:user)
       post = create(:post, user: user)
-      create(:comment, user: user, post: post)
+      comment = create(:comment, user: user, post: post)
+      create(:like, user: user, comment: comment)
 
       visit root_path
 
@@ -14,9 +15,9 @@ RSpec.feature 'User likes a comment' do
 
       find('input[type="submit"]').click
 
-      click_on 'Like Comment'
+      click_on 'Unlike Comment'
 
-      expect(page).to have_content 'Unlike Comment (1 Like)'
+      expect(page).to have_content 'Like Comment (0 Likes)'
     end
   end
 end

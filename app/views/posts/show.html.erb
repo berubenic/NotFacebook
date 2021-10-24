@@ -12,7 +12,7 @@
   <%if @post.user == current_user %>
     <div class='post-actions'>
       <% if current_user.likes_post?(@post) %>
-        <%= link_to "Unlike (#{pluralize(@post.likes.count, 'Like')})" %>
+        <%= link_to "Unlike (#{pluralize(@post.likes.count, 'Like')})", destroy_post_like_path(id: @post.id), method: :delete %>
       <% else %>
         <%= link_to "Like (#{pluralize(@post.likes.count, 'Like')})",  likes_path(user_id: current_user.id, post_id: @post.id), method: :post%>
       <% end %>

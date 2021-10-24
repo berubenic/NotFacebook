@@ -11,7 +11,7 @@
         <%= link_to 'Delete', post_comment_path(post, comment), method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>
       <% if current_user.likes_comment?(comment) %>
-        <%= link_to "Unlike Comment (#{pluralize(comment.likes.count, 'Like')})" %>
+        <%= link_to "Unlike Comment (#{pluralize(comment.likes.count, 'Like')})", destroy_comment_like_path(id: comment.id), method: :delete %>
       <% else %>
         <%= link_to "Like Comment (#{pluralize(comment.likes.count, 'Like')})", likes_path(user_id: current_user.id, comment_id: comment.id, post_id: comment.post.id ), method: :post %>
       <% end %>

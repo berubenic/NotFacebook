@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   resources :friendships, only: %i[create update destroy]
 
   resources :likes, only: %i[create destroy]
+
+  match 'destroy_comment_like', to: 'likes#destroy_comment_like', via: [:delete]
+  match 'destroy_post_like', to: 'likes#destroy_post_like', via: [:delete]
 end

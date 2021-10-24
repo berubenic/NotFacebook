@@ -25,6 +25,22 @@ class LikesController < ApplicationController
     redirect_to post
   end
 
+  def destroy_post_like
+    post = Post.find(params[:id])
+    like = Like.find_by(user_id: current_user.id, post_id: post.id)
+    like.destroy
+
+    redirect_to post
+  end
+
+  def destroy_comment_like
+    comment = Comment.find(params[:id])
+    like = Like.find_by(user_id: current_user.id, comment_id: comment.id)
+    like.destroy
+
+    redirect_to comment.post
+  end
+
   private
 
   def like_params
