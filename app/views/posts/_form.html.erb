@@ -2,8 +2,10 @@
   <%= form.text_area :body, class: 'post-input', placeholder: 'Let others know how you feel...' %>
   <% if @post.post_image.attached? %>
     <%= image_tag @post.post_image.variant(resize_to_limit: [200, nil]), width: '200px', height: 'auto', class: 'post-image' %>
+    <%= link_to 'Remove Image', delete_profile_image_path, data: { confirm: 'Are you sure?'} %>
   <% end %>
   <%= form.label :post_image, 'Add Image' %>
   <%= form.file_field :post_image, class: 'browse-image-input' %>
+  <%= link_to 'Remove Image', new_post_path, data: { confirm: 'Are you sure? You will lose all content.'} %>
   <%= form.submit 'Post', class: 'post-button' %>
 <% end %>
