@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  */
-
+html {
+    font-family: 'Lato', sans-serif;
+}
  main {
      display: flex;
      flex-direction: column;
