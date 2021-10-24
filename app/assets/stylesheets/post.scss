@@ -1,21 +1,31 @@
+@import 'variables';
+
 .post-container {
     width: 98%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: 1px solid black;
     border-radius: 4px;
     margin: 1em;
     padding: 1em;
     box-sizing: border-box;
+    background: rgba(0, 0, 0, 0.856);
+    color: white;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .post-header {
-    width: 100%;
+    width: fit-content;
+    padding: 1em;
     display: flex;
     flex-direction: column;
+    justify-content: start;
+    align-self: flex-start;
     align-items: flex-start;
+    background: white;
+    border-radius: 4px;
+    color: black;
 }
 
 .post-header>* {
@@ -29,7 +39,7 @@
     width: 100%;
     margin: 1em;
     padding: 0.5em;
-    border: 1px solid black;
+    background: white;
     border-radius: 4px;
     box-sizing: border-box;
 }
@@ -43,12 +53,24 @@
    margin: 1em;
 }
 
+.post-date {
+    font-weight: lighter;
+}
+
 .post-actions {
     width: 100%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    margin-bottom: 1em;
+}
+
+.post-actions a {
+    padding: 0.6em;
+    color: $blue;
+    text-decoration: none;
+    margin: 0.4em 0;
 }
 
 .post-form-container  {
@@ -62,7 +84,11 @@
 
 .post-form-container>* {
     margin: 0.5em;
+}
 
+.post-form-container a {
+    color: $blue;
+    text-decoration: none;
 }
 
 .post-input {

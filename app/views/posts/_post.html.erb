@@ -1,7 +1,7 @@
 <div class='post-container'>
   <div class='post-header'>
     <h4 ><%= post.user.full_name %></h4>
-    <h5><%= post.created_at.strftime('%B %d %Y at %H:%M') %></h5>
+    <h5 class='post-date'><%= post.created_at.strftime('%B %d %Y at %H:%M') %></h5>
   </div>
   <div class='post-body'>
     <p class='post-body-text'><%= post.body %></p>
@@ -15,7 +15,7 @@
       <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     <%= link_to "View", post_path(post) %>
-    <%= link_to "Add Comment", post_path(post) %>
+    <%= link_to "Add Comment (#{pluralize(post.comments.count, 'Comment')})", post_path(post) %>
     <% if current_user.likes_post?(post) %>
       <%= link_to "Unlike (#{pluralize(post.likes.count, 'Like')})", destroy_post_like_path(id: post.id), method: :delete %>
     <% else %>

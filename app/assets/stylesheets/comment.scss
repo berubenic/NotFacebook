@@ -17,7 +17,6 @@
     height: 5vh;
     padding: 1em 0.6em;
     box-sizing: border-box;
-    border: 2px solid black;
     border-radius: 4px;
     resize: none;
 }
@@ -26,7 +25,6 @@
     width: 60%;
     padding: 1em;
     font-weight: bold;
-    border: 1px solid black;
     border-radius: 4px;
 }
 
@@ -35,6 +33,7 @@
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    color: black;
 }
 
 .comment-header>* {
@@ -49,9 +48,10 @@
     width: 100%;
     margin: 1em;
     padding: 0.5em;
-    border: 1px solid black;
     border-radius: 4px;
     box-sizing: border-box;
+    color: white;
+    background: $black;
 }
 
 .comment-container {
@@ -59,10 +59,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid black;
     border-radius: 4px;
     padding: 1em;
     box-sizing: border-box;
+    background: white;
 }
 
 .comments-container {
@@ -77,6 +77,9 @@
 }
 
 .comment-actions a {
+    background: $black;
+    padding: 0.4em;
+    border-radius: 4px;
     color: $blue;
     text-decoration: none;
 }

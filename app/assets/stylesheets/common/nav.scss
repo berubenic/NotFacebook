@@ -6,11 +6,13 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    background: rgba(0, 0, 0, 0.856);
+    margin-bottom: 2em;
 }
 .nav>* {
     margin-top: 0.5em;
     padding: 0.4em;
-    color: $blue;
+    color: white;
     text-decoration: none;
 }
 
@@ -29,7 +31,6 @@
     margin: 0;
     margin-top: 0.5em;
     font-weight: bold;
-    color: black;
 }
 
 .nav-profile-image {
