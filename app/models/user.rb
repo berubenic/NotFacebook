@@ -46,6 +46,12 @@ class User < ApplicationRecord
     false
   end
 
+  def likes_comment?(comment)
+    return true if Like.find_by(user_id: id, comment_id: comment.id)
+
+    false
+  end
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.provider = auth.provider

@@ -4,7 +4,6 @@ RSpec.feature 'User deletes a comment' do
   context 'they are on the home page' do
     scenario 'they delete a comment on their own post' do
       user = create(:user)
-      create(:user, first_name: 'friend', last_name: 'one')
       create(:post, user: user, body: 'my own post')
 
       visit root_path
@@ -19,7 +18,28 @@ RSpec.feature 'User deletes a comment' do
       fill_in 'comment_body', with: 'I am a comment'
       click_on 'Create Comment'
 
-      page.find('a:eq(2)', text: 'Delete').click
+      within('div', class: 'comment-actions') do
+        click_on 'Delete'
+      end
+
+      expect(page).to_not have_content 'I am a comment'
+    end
+
+    scenario 'they delete a comment on their own post' do
+      user = create(:user)
+      post = create(:post, user: user, body: 'my own post')
+      create(:comment, user: user, post: post)
+
+      visit root_path
+
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+
+      find('input[type="submit"]').click
+
+      within('div', class: 'comment-actions') do
+        click_on 'Delete'
+      end
 
       expect(page).to_not have_content 'I am a comment'
     end

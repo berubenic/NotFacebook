@@ -157,3 +157,22 @@ RSpec.describe User, '#likes_post?' do
     expect(user.likes_post?(post)).to eq false
   end
 end
+
+RSpec.describe User, '#likes_comment?' do
+  it 'returns true if user like the post' do
+    user = create(:user)
+    post = create(:post, user: user)
+    comment = create(:comment, user: user, post: post)
+    create(:like, user: user, comment: comment)
+
+    expect(user.likes_comment?(comment)).to eq true
+  end
+
+  it 'returns false if user did not like the post' do
+    user = create(:user)
+    post = create(:post, user: user)
+    comment = create(:comment, user: user, post: post)
+
+    expect(user.likes_comment?(comment)).to eq false
+  end
+end

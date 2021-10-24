@@ -1,7 +1,7 @@
 {
   "RSpec": {
     "coverage": {
-      "/home/nicholas/odin/NotFacebook/spec/features/user_unlikes_a_post_spec.rb": {
+      "/home/nicholas/odin/NotFacebook/spec/features/user_likes_a_comment_spec.rb": {
         "lines": [
           1,
           null,
@@ -891,6 +891,12 @@
           1,
           1,
           1,
+          2,
+          null,
+          null,
+          1,
+          1,
+          1,
           null,
           null
         ]
@@ -973,6 +979,12 @@
           null,
           null,
           1,
+          2,
+          null,
+          1,
+          null,
+          null,
+          1,
           0,
           0,
           0,
@@ -984,7 +996,7 @@
           null,
           null,
           1,
-          4,
+          6,
           null,
           null
         ]
@@ -1095,10 +1107,13 @@
           null
         ]
       },
-      "/home/nicholas/odin/NotFacebook/app/models/like.rb": {
+      "/home/nicholas/odin/NotFacebook/app/models/comment.rb": {
         "lines": [
           1,
           1,
+          1,
+          1,
+          null,
           1,
           null
         ]
@@ -1209,48 +1224,53 @@
           null
         ]
       },
+      "/home/nicholas/odin/NotFacebook/app/models/like.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/home/nicholas/odin/NotFacebook/app/controllers/likes_controller.rb": {
         "lines": [
           1,
           1,
-          0,
-          0,
-          0,
-          0,
+          1,
+          null,
+          1,
+          1,
           null,
           0,
           0,
           null,
+          1,
+          0,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          0,
+          0,
+          0,
+          null,
           0,
           null,
           null,
           1,
-          1,
+          null,
           1,
           1,
           null,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          0,
-          null,
-          null
-        ]
-      },
-      "/home/nicholas/odin/NotFacebook/app/models/comment.rb": {
-        "lines": [
-          1,
-          1,
-          1,
-          null,
-          1,
           null
         ]
       }
     },
-    "timestamp": 1635097977
+    "timestamp": 1635100158
   }
 }
