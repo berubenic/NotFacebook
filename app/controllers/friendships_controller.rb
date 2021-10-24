@@ -15,8 +15,12 @@ class FriendshipsController < ApplicationController
   def destroy
     friendship = Friendship.find_by(user_id: params[:id], friend_id: current_user.id)
     friendship ||= Friendship.find_by(user_id: current_user.id, friend_id: params[:id])
+    if friendship.confirmed 
+      flash[:notice] = 'Friend Removed!'
+    else
+      flash[:notice] = 'Friend Request Declined!'
+    end
     friendship.destroy
-    flash[:notice] = 'Friend Request Declined!'
     redirect_to users_path
   end
 end

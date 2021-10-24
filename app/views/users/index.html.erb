@@ -25,6 +25,7 @@
     <% @friends.each do |user| %>
       <div class='user-container'>
         <li><%= user.full_name %></li>
+        <li><%= button_to 'Remove Friend', friendship_path(user.id), method: :delete %></li>
       </div>
     <% end %>
   </ul>
