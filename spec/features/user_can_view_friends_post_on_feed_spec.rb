@@ -6,8 +6,8 @@ RSpec.feature "User sees friends' post on feed" do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
       friend_two = create(:user, first_name: 'friend', last_name: 'two')
-      create(:friendship, user: user, friend: friend_one)
-      create(:friendship, user: user, friend: friend_two)
+      create(:friendship, user: user, friend: friend_one, confirmed: true)
+      create(:friendship, user: user, friend: friend_two, confirmed: true)
       create(:post, user: friend_one)
       create(:post, user: friend_two)
 
@@ -27,6 +27,7 @@ RSpec.feature "User sees friends' post on feed" do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
       friend_two = create(:user, first_name: 'friend', last_name: 'two')
+      create(:post, user: friend_one)
       create(:friendship, user: user, friend: friend_one)
       create(:friendship, user: user, friend: friend_two)
 

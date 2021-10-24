@@ -4,7 +4,6 @@ RSpec.feature 'User comments on post' do
   context 'they are on the home page' do
     scenario 'they comment on their own post' do
       user = create(:user)
-      create(:user, first_name: 'friend', last_name: 'one')
       create(:post, user: user, body: 'my own post')
 
       visit root_path
@@ -25,6 +24,7 @@ RSpec.feature 'User comments on post' do
     scenario 'they comment on a friends post' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
+      create(:friendship, user: user, friend: friend_one, confirmed: true)
       create(:post, user: friend_one, body: 'my own post')
 
       visit root_path

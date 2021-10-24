@@ -27,6 +27,7 @@ RSpec.feature 'User deletes a comment' do
     scenario 'they delete a comment on a friends post' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
+      create(:friendship, user: user, friend: friend_one, confirmed: true)
       create(:post, user: friend_one, body: 'my own post')
 
       visit root_path

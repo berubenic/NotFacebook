@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   def index
-    @posts = Post.all.order(created_at: :desc).includes(:user, :post_image_attachment)
+    friend_ids = current_user.friends.pluck(:id)
+    friend_ids << current_user
+    @posts = Post.where(user_id: friend_ids).order(created_at: :desc).includes(:user, :post_image_attachment)
     @post = Post.new
   end
 
