@@ -1,9 +1,11 @@
 <%= link_to "Edit profile", edit_user_registration_path %>
 <%= link_to 'Friends',  users_path%>
-<p class='nav-user-name'><%= current_user.full_name %></p>
-<% unless current_user.profile_image.attached? %>
-  <%= image_tag('default_profile.svg')%>
-<% else %>
-  <%= image_tag current_user.profile_image.variant(resize_to_limit: [100, nil]), width: '100px', height: 'auto'%>
-<% end %>
+<div class='nav-user-container'>
+  <% unless current_user.profile_image.attached? %>
+    <%= image_tag 'default_profile.svg', width: '64px', height: '64px', class: 'nav-profile-image'%>
+  <% else %>
+    <%= image_tag current_user.profile_image.variant(resize_to_limit: [64, nil]), width: 'auto', height: '64px', class: 'nav-profile-image'%>
+  <% end %>
+  <p class='nav-user-name'><%= current_user.full_name %></p>
+</div>
 <%= link_to "Logout", destroy_user_session_path, method: :delete  %>

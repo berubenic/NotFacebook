@@ -1,3 +1,5 @@
+@import 'variables';
+
 .nav {
     display: flex;
     flex-direction: row;
@@ -8,10 +10,28 @@
 .nav>* {
     margin-top: 0.5em;
     padding: 0.4em;
+    color: $blue;
+    text-decoration: none;
+}
+
+.nav a:hover {
+    transform: scale(1.1);
+}
+
+.nav-user-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .nav-user-name {
     margin: 0;
     margin-top: 0.5em;
     font-weight: bold;
+    color: black;
+}
+
+.nav-profile-image {
+    border-radius: 6px;
+    margin-right: 1em;
 }
