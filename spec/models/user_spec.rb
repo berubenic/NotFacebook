@@ -140,3 +140,20 @@ RSpec.describe User, '#pending_friend_requests_recieved' do
     expect(result).to eq [friend_one, friend_two]
   end
 end
+
+RSpec.describe User, '#likes_post?' do
+  it 'returns true if user like the post' do
+    user = create(:user)
+    post = create(:post, user: user)
+    create(:like, user: user, post: post)
+
+    expect(user.likes_post?(post)).to eq true
+  end
+
+  it 'returns false if user did not like the post' do
+    user = create(:user)
+    post = create(:post, user: user)
+
+    expect(user.likes_post?(post)).to eq false
+  end
+end

@@ -16,5 +16,10 @@
     <% end %>
     <%= link_to "View", post_path(post) %>
     <%= link_to "Add Comment", post_path(post) %>
+    <% if current_user.likes_post?(post) %>
+      <%= link_to "Unlike (#{pluralize(post.likes.count, 'Like')})" %>
+    <% else %>
+      <%= link_to 'Like',  likes_path(user_id: current_user.id, post_id: post.id), method: :post%>
+    <% end %>
   </div>
 </div>

@@ -16,4 +16,9 @@ FactoryBot.define do
     user
     body { 'I am a body' }
   end
+
+  factory :like do
+    user
+    post
+  end
 end

@@ -18,4 +18,6 @@ Rails.application.routes.draw do
   end
 
   resources :friendships, only: %i[create update destroy]
+
+  resources :likes, only: %i[create]
 end
