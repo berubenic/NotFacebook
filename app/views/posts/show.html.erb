@@ -14,8 +14,9 @@
       <% if current_user.likes_post?(@post) %>
         <%= link_to "Unlike (#{pluralize(@post.likes.count, 'Like')})" %>
       <% else %>
-        <%= link_to 'Edit', edit_post_path(@post) %>
+        <%= link_to "Like (#{pluralize(@post.likes.count, 'Like')})",  likes_path(user_id: current_user.id, post_id: @post.id), method: :post%>
       <% end %>
+      <%= link_to 'Edit', edit_post_path(@post) %>
       <%= link_to 'Delete', post_path(@post), method: :delete, data: { confirm: 'Are you sure?' } %>
     </div>
   <% end %>
