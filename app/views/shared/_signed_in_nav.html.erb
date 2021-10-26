@@ -1,5 +1,6 @@
-<%= link_to "Edit profile", edit_user_registration_path %>
+<%= link_to 'Home', root_path %>
 <%= link_to 'Friends',  users_path%>
+<%= link_to "Profile", edit_user_registration_path %>
 <div class='nav-user-container'>
   <% unless current_user.profile_image.attached? %>
     <%= image_tag 'default_profile.svg', width: '64px', height: '64px', class: 'nav-profile-image'%>

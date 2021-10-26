@@ -1,46 +1,46 @@
 <div class='devise-container'>
-	<h2>Edit <%= resource_name.to_s.humanize %></h2>
-	<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'devise-form' }) do |f| %>
-		<%= render "devise/shared/error_messages", resource: resource %>
-		<div class="field">
-			<%= f.label :email, class: 'label' %><br />
-			<%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
-		</div>
-		<% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-			<div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-		<% end %>
-		<div class="field">
-			<%= f.label :password, class: 'label' %> <i class='label'>(leave blank if you don't want to change it)</i><br />
-			<%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
-			<% if @minimum_password_length %>
-				<br />
-				<em class='label'><%= @minimum_password_length %> characters minimum</em>
-			<% end %>
-		</div>
-		<div class="field">
-			<%= f.label :password_confirmation, class: 'label' %><br />
-			<%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
-		</div>
-		<% unless current_user.provider == 'facebook' %>
-		<div class="field">
-			<%= f.label :current_password, class: 'label' %> <i class='label'>(we need your current password to confirm your changes)</i><br />
-			<%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
-		</div>
-		<% end %>
-		<div class='field'>
-			<% if current_user.profile_image.attached? %>
-				<%= image_tag current_user.profile_image.variant(resize_to_limit: [100, nil]), width: '100px', height: 'auto'%>
-				<%= link_to 'Remove Profile Image', delete_profile_image_path, data: { confirm: 'Are you sure?'} %>
-			<% end %>
-			<%= f.label :profile_image %>
-			<%= f.file_field :profile_image %>
-		</div>
-		<div class="actions">
-			<%= f.submit "Update", class: 'devise-button' %>
-		</div>
-	<% end %>
-	<p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'devise-button' %></p>
-	<div class='devise-links'>
-		<%= link_to "Back", root_path %>
-	</div>
+  <h2>Edit <%= resource_name.to_s.humanize %></h2>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'devise-form' }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="field">
+      <%= f.label :email, class: 'label' %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'input' %>
+    </div>
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+    <div class="field">
+      <%= f.label :password, class: 'label' %> <i class='label'>(leave blank if you don't want to change it)</i><br />
+      <%= f.password_field :password, autocomplete: "new-password", class: 'input' %>
+      <% if @minimum_password_length %>
+        <br />
+        <em class='label'><%= @minimum_password_length %> characters minimum</em>
+      <% end %>
+    </div>
+    <div class="field">
+      <%= f.label :password_confirmation, class: 'label' %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'input' %>
+    </div>
+    <% unless current_user.provider == 'facebook' %>
+      <div class="field">
+        <%= f.label :current_password, class: 'label' %> <i class='label'>(we need your current password to confirm your changes)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password", class: 'input' %>
+      </div>
+    <% end %>
+    <div class='image-field'>
+      <%= f.label :profile_image %>
+      <% if current_user.profile_image.attached? %>
+        <%= image_tag current_user.profile_image.variant(resize_to_limit: [100, nil]), width: '100px', height: 'auto'%>
+        <%= link_to 'Remove Profile Image', delete_profile_image_path, data: { confirm: 'Are you sure?'} %>
+      <% end %>
+      <%= f.file_field :profile_image, class: 'file-upload' %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Update", class: 'devise-button' %>
+    </div>
+  <% end %>
+  <p>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete, class: 'devise-button long' %></p>
+  <div class='devise-links'>
+    <%= link_to "Back", root_path %>
+  </div>
 </div>

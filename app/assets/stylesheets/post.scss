@@ -17,15 +17,14 @@
 
 .post-header {
     width: fit-content;
-    padding: 1em;
+    padding: 0.5em;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-self: flex-start;
     align-items: flex-start;
-    background: white;
     border-radius: 4px;
-    color: black;
+    color: white;
 }
 
 .post-header>* {
@@ -42,6 +41,7 @@
     background: white;
     border-radius: 4px;
     box-sizing: border-box;
+    color: black;
 }
 
 .post-body-text {
@@ -68,9 +68,12 @@
 
 .post-actions a {
     padding: 0.6em;
-    color: $blue;
+    color: white;
+    font-weight: bold;
     text-decoration: none;
     margin: 0.4em 0;
+    background: $purple;
+    border-radius: 4px;
 }
 
 .post-form-container  {
@@ -96,7 +99,6 @@
     height: 20vh;
     padding: 1em 0.6em;
     box-sizing: border-box;
-    border: 2px solid black;
     border-radius: 4px;
     resize: none;
 }
@@ -109,8 +111,9 @@
     width: 50%;
     padding: 1em;
     font-weight: bold;
-    border: 1px solid black;
     border-radius: 4px;
+    color: white;
+    background: $purple;
 }
 .post-button:hover {
     transform: scale(1.05);

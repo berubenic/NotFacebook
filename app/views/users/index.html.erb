@@ -1,6 +1,9 @@
 <div class='user-list-container'>
   <h2>Find Friends</h2>
   <ul class='user-list'>
+    <% if @strangers.empty? %>
+      <li>You have no friends left to add.</li>
+    <% end %>
     <% @strangers.each do |user| %>
       <div class='user-container'>
         <li><%= user.full_name %></li>
@@ -12,6 +15,9 @@
 <div class='user-list-container'>
   <h2>Friend Requests Sent</h2>
   <ul class='user-list'>
+    <% if @friends_sent.empty? %>
+      <li>You have not sent any friends requests.</li>
+    <% end %>
     <% @friends_sent.each do |user| %>
       <div class='user-container'>
         <li><%= user.full_name %></li>
@@ -22,6 +28,9 @@
 <div class='user-list-container'>
   <h2>Friends</h2>
   <ul class='user-list'>
+    <% if @friends.empty? %>
+      <li>You have no friends.</li>
+    <% end %>
     <% @friends.each do |user| %>
       <div class='user-container'>
         <li><%= user.full_name %></li>
@@ -33,6 +42,9 @@
 <div class='user-list-container'>
   <h2>Pending Requests</h2>
   <ul class='user-list'>
+    <% if @friends_recieved.empty? %>
+      <li>You have no pending friend requests.</li>
+    <% end %>
     <% @friends_recieved.each do |user| %>
       <div class='user-container'>
         <li><%= user.full_name %></li>

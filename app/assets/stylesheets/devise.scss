@@ -9,8 +9,13 @@
     width: 60%;
     margin: 3em auto;
     padding: 1em;
-    border-radius: 8px;
+    border-radius: 4px;
     text-align: center;
+    background: $black;
+    color: white;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+
 }
 .devise-form {
     display: flex;
@@ -33,17 +38,55 @@
     width: 100%;
 }
 
+.image-field {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1em 0;
+}
+
+.image-field>* {
+    padding: 0.5em;
+    color: white;
+    margin: 0.4em;
+}
+
+.image-field a {
+    text-decoration: none;
+    background: $purple;
+    border-radius: 4px;
+}
+
+.file-upload {
+    width: 100%;
+}
+
 .field input {
     border: 1px solid black;
-    border-radius: 8px;
+    border-radius: 4px;
+}
+
+.devise-button.long {
+    width: auto;
 }
 
 .devise-button {
     background-color: $purple;
     color: white;
     border-radius: 8px;
-    width: auto;
-    padding: 0 1em;
+    width: 50%;
+    padding: 0.6em;
+    font-weight: bold;
+    margin: 1em 0;
+}
+
+.devise-button:hover {
+    transform: scale(1.05);
+}
+
+.center {
+    text-align: center;
 }
 
 .label {
@@ -70,4 +113,10 @@
 .error-message {
     list-style: none;
     color: red;
+}
+
+@media only screen and (min-width: 850px) {
+.devise-container {
+    width: 40%;
+}
 }
