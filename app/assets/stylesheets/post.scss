@@ -69,12 +69,15 @@
 
 .post-actions a {
     padding: 0.6em;
-    color: white;
+    color: $blue;
     font-weight: bold;
     text-decoration: none;
     margin: 0.4em 0;
-    background: $purple;
     border-radius: 4px;
+}
+
+.post-actions a:hover {
+    transform: scale(1.1);
 }
 
 .post-form-container  {
@@ -93,6 +96,10 @@
 .post-form-container a {
     color: $blue;
     text-decoration: none;
+}
+
+.post-form-container a:hover {
+    transform: scale(1.1);
 }
 
 .post-input {
