@@ -20,7 +20,7 @@ FactoryBot.define do
   factory :comment do
     user
     post
-    body { 'I am a body' }
+    body { 'I am a comment' }
   end
 
   factory :like do

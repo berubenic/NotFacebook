@@ -85,6 +85,7 @@
     border-radius: 4px;
     background: white;
     padding: 1em;
+    margin: 1em;
 }
 
 .comments-container {
@@ -100,7 +101,6 @@
 }
 
 .comments-container>* {
-    margin: 0.2em 0;
 }
 
 .comment-actions {
@@ -140,7 +140,7 @@ justify-content: space-evenly;
     }
 
     .comment-container {
-        width: 50%;
+        width: 90%;
     }
 
     .comments-container {
