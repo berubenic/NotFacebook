@@ -3,9 +3,14 @@
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    margin-top: 5vh;
+    margin-top: 1em;
 }
 
 .footer i {
     color: black;
+    margin-bottom: 0.5em;
+}
+
+.footer i:hover {
+    transform: scale(1.2);
 }

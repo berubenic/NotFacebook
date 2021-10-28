@@ -10,6 +10,7 @@
     color: white;
     margin: 1em;
     border-radius: 4px;
+    padding: 1em 0;
     box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
 }
@@ -91,8 +92,8 @@
     background: $black;
     color: white;
     border-radius: 4px;
-    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
     padding: 1em 0;
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 
 .comments-container>* {
@@ -100,10 +101,7 @@
 }
 
 .comment-actions a {
-    background: $purple;
-    padding: 0.4em;
-    border-radius: 4px;
-    color: white;
+    color: $purple;
     text-decoration: none;
     font-weight: bold;
 }

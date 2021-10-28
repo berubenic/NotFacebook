@@ -12,7 +12,7 @@ RSpec.feature 'User submits the edit form' do
 
       find('input[type="submit"]').click
 
-      click_on 'Edit profile'
+      click_on 'Profile'
 
       fill_in 'user_email', with: 'email@email.com'
       fill_in 'user_current_password', with: user.password
@@ -36,7 +36,7 @@ RSpec.feature 'User submits the edit form' do
 
       find('input[type="submit"]').click
 
-      click_on 'Edit profile'
+      click_on 'Profile'
 
       fill_in 'user_email', with: 'email@email.com'
       attach_file('Profile image', Rails.root + 'spec/fixtures/green.png')

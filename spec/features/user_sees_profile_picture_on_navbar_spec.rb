@@ -25,7 +25,7 @@ RSpec.feature 'User sees profile picture on navbar' do
 
       find('input[type="submit"]').click
 
-      click_on 'Edit profile'
+      click_on 'Profile'
 
       fill_in 'user_current_password', with: user.password
       attach_file('Profile image', Rails.root + 'spec/fixtures/green.png')

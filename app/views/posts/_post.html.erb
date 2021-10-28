@@ -11,7 +11,7 @@
   </div>
   <div class='post-actions'>
     <%if post.user == current_user %>
-      <%= link_to 'Edit', post_path(post), method: :patch %>
+      <%= link_to 'Edit', edit_post_path(post) %>
       <%= link_to 'Delete', post_path(post), method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     <%= link_to "View", post_path(post) %>
