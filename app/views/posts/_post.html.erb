@@ -23,7 +23,7 @@
     <% end %>
   </div>
   <h3>Comments (<%= pluralize(post.comments.count, "Comment") %>)</h3>
-  <%= render post.comments.limit(5), post: post %>
+  <%= render post.comments.limit(5).order(created_at: :desc), post: post %>
   <div class='post-actions'>
     <% unless post.comments.empty? %>
       <%= link_to "View all comments (#{pluralize(post.comments.count, 'Comment')})", post_path(post), class: 'post-action' %>

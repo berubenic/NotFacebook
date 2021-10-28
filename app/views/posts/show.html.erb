@@ -27,5 +27,5 @@
 </div>
 <div class='comments-container'>
   <h3>Comments</h3>
-  <%= render @post.comments, post: @post %>
+  <%= render @post.comments.order(created_at: :desc), post: @post %>
 </div>
