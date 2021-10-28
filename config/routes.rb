@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   resources :friendships, only: %i[create update destroy]
 
+  match 'cancel_friendship/:id', to: 'friendships#cancel_friendship', as: 'cancel_friendship', via: [:delete]
+
   resources :likes, only: %i[create destroy]
 
   match 'destroy_comment_like', to: 'likes#destroy_comment_like', via: [:delete]
