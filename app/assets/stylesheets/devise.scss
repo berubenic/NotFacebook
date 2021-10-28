@@ -54,8 +54,11 @@
 
 .image-field a {
     text-decoration: none;
-    background: $purple;
-    border-radius: 4px;
+    color: $blue;
+}
+
+.image-field a:hover {
+    transform: scale(1.1);
 }
 
 .file-upload {
@@ -103,6 +106,10 @@
     padding: 0.2em;
     color: $blue;
     text-decoration: none;
+}
+
+.devise-links a:hover {
+    transform: scale(1.1);
 }
 
 .error-explanation h2 {
