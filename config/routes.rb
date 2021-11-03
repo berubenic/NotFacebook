@@ -25,4 +25,10 @@ Rails.application.routes.draw do
 
   match 'destroy_comment_like', to: 'likes#destroy_comment_like', via: [:delete]
   match 'destroy_post_like', to: 'likes#destroy_post_like', via: [:delete]
+
+  resources :deletion_requests, only: [:show] do
+    collection do
+      post :facebook
+    end
+  end
 end
