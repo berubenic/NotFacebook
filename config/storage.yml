@@ -6,17 +6,16 @@ local:
   service: Disk
   root: <%= Rails.root.join("storage") %>
 
-amazon_prod:
-  service: S3
-  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
-  region: us-east-1
-  bucket: notfacebook-pro
+cloudinary_prod:
+  service: Cloudinary
+  cloud_name: "dmqkg0xbz"
+  api_key: <%= ENV['CLOUD_API_KEY'] %>
+  api_secret: <%= ENV['CLOUD_API_SECRET'] %>
+  secure: true
 
-amazon_dev:
-  service: S3
-  access_key_id: <%= Rails.application.credentials.dig(:aws, :access_key_id) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:aws, :secret_access_key) %>
-  region: us-east-1
-  bucket: notfacebook-dev
-
+cloudinary_dev:
+  service: Cloudinary
+  cloud_name: "dmqkg0xbz"
+  api_key: <%= ENV['CLOUD_API_KEY'] %>
+  api_secret: <%= ENV['CLOUD_API_SECRET'] %>
+  secure: true
