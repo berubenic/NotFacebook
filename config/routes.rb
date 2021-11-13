@@ -31,4 +31,6 @@ Rails.application.routes.draw do
       post :facebook
     end
   end
+
+  resources :notifications, only: %i[index create]
 end

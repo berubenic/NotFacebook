@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :friendships
   has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
   has_many :likes, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   has_one_attached :profile_image
   validates_with ImageValidator, fields: { attribute_name: :profile_image }
