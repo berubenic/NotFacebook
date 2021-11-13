@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
   def index
     friend_ids = current_user.friends.pluck(:id)
@@ -10,8 +12,7 @@ class PostsController < ApplicationController
     @post = Post.new
   end
 
-  def create
-    user = current_user
+  def create(user = current_user)
     @post = user.posts.build(post_params)
     respond_to do |format|
       if @post.save

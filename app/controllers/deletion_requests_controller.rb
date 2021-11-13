@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class DeletionRequestsController < ApplicationController
   # disable CSRF protection, as it doesn't make sense in this case
   protect_from_forgery with: :null_session
@@ -14,7 +16,7 @@ class DeletionRequestsController < ApplicationController
   end
 
   def show
-    dr = DeletionRequest.find_by_pid!(params[:id])
+    dr = DeletionRequest.find_by!(pid: params[:id])
     render text: if dr.deleted?
                    'Your data has been completely deleted'
                  else

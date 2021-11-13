@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2021_11_13_145655) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["pid"], name: "index_deletion_requests_on_pid"
+    t.index ["uid", "provider"], name: "id_uid_provider", unique: true
   end
 
   create_table "friendships", force: :cascade do |t|

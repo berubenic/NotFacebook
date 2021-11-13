@@ -4,6 +4,7 @@ class CreateDeletionRequest < ActiveRecord::Migration[6.1]
       t.string :provider
       t.string :uid
       t.string :pid
+      t.index %w[uid provider], name: 'id_uid_provider', unique: true
 
       t.timestamps
     end

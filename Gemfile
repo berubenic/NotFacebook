@@ -43,9 +43,9 @@ gem 'cloudinary'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rspec-rails', '~> 5.0.0'
+  gem 'factory_bot_rails'
   gem 'pry-byebug'
-  gem "factory_bot_rails"
+  gem 'rspec-rails', '~> 5.0.0'
 end
 
 group :development do
@@ -57,11 +57,11 @@ group :development do
   gem 'rack-mini-profiler', '~> 2.0'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'guard-livereload'
-  gem 'rack-livereload'
   gem 'guard-rspec', require: false
+  gem 'letter_opener'
+  gem 'rack-livereload'
   gem 'rubocop-rails'
   gem 'spring'
-  gem 'letter_opener'
 end
 
 group :test do
@@ -69,9 +69,9 @@ group :test do
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
+  gem 'database_cleaner'
+  gem 'shoulda-matchers'
   gem 'webdrivers'
-  gem "database_cleaner"
-  gem "shoulda-matchers"
 
   gem 'simplecov'
 end
@@ -79,4 +79,4 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "hotwire-rails", "~> 0.1.3"
+gem 'hotwire-rails', '~> 0.1.3'

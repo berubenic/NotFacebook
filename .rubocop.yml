@@ -12,6 +12,7 @@ AllCops:
     - script/**/*
     - config/**/*
     - Guardfile
+    - spec/**/*
     
 Style/Documentation:
   Enabled: false

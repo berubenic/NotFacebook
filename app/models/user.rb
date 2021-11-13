@@ -12,8 +12,11 @@ class User < ApplicationRecord
                                                message: 'only allows letters' }
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
-  has_many :friendships
-  has_many :pending_friendships, -> { where confirmed: false }, class_name: 'Friendship', foreign_key: 'friend_id'
+  has_many :friendships, dependent: :destroy
+  has_many :pending_friendships, lambda {
+                                   where confirmed: false
+                                 }, class_name: 'Friendship', foreign_key: 'friend_id',
+                                    dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
@@ -53,6 +56,7 @@ class User < ApplicationRecord
     false
   end
 
+  # rubocop:disable Metrics/AbcSize
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.uid = auth.uid
@@ -62,8 +66,9 @@ class User < ApplicationRecord
       user.last_name = auth.info.name.split[-1]
     end
   end
+  # rubocop:enable Metrics/AbcSize
 
   def full_name
-    first_name + ' ' + last_name
+    "#{first_name} #{last_name}"
   end
 end

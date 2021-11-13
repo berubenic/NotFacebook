@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ImageValidator < ActiveModel::Validator
   def validate(record)
     attribute = options[:fields][:attribute_name]
