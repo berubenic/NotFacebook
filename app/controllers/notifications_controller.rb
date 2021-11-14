@@ -5,7 +5,8 @@ class NotificationsController < ApplicationController
     @notifications = Notification.where(user_id: current_user.id)
     @friends = find_friends_from_friendships(@notifications)
     mark_notifications_as_seen(@notifications)
-    @likes = find_likes_from_notifications(@notifications)
+    @post_likes = find_post_likes_from_notifications(@notifications)
+    @comment_likes = find_comment_likes_from_notifications(@notifications)
   end
 
   def create
@@ -15,11 +16,22 @@ class NotificationsController < ApplicationController
 
   private
 
-  def find_likes_from_notifications(notifications, likes = [])
+  def find_comment_likes_from_notifications(notifications, likes = [])
     notifications.each do |notification|
-      next unless notification.like
+      like = notification.like
+      next unless like
 
-      likes << notification.like
+      likes << like if like.comment_id
+    end
+    likes
+  end
+
+  def find_post_likes_from_notifications(notifications, likes = [])
+    notifications.each do |notification|
+      like = notification.like
+      next unless like
+
+      likes << like if like.post_id
     end
     likes
   end
