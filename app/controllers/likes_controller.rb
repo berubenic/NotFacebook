@@ -4,7 +4,7 @@ class LikesController < ApplicationController
   def create_post_like
     post = Post.find(params[:post_id])
 
-    like = find_existing_like(post)
+    like = find_existing_post_like(params)
 
     if like
       flash[:alert] = 'Post already liked!'
@@ -17,9 +17,8 @@ class LikesController < ApplicationController
 
   def create_comment_like
     post = Post.find(params[:post_id])
-    comment = Comment.find(params[:comment_id])
 
-    like = find_existing_like(comment)
+    like = find_existing_comment_like(params)
 
     if like
       flash[:alert] = 'Comment already liked!'
@@ -60,12 +59,16 @@ class LikesController < ApplicationController
     params.permit(:user_id, :post_id, :comment_id)
   end
 
-  def find_existing_like(post = nil, comment = nil)
-    if post
-      like = Like.find_by(user_id: current_user.id, post_id: post.id)
-    elsif comment
-      like = Like.find_by(user_id: current_user.id, comment_id: comment.id)
-    end
+  def find_existing_post_like(params)
+    binding.pry
+    post = Post.find(params[:post_id])
+    like = Like.find_by(user_id: current_user.id, post_id: post.id) if post
+    like
+  end
+
+  def find_existing_comment_like(params)
+    comment = Comment.find(params[:comment_id]) if params[:comment_id]
+    like = Like.find_by(user_id: current_user.id, comment_id: comment.id) if comment
     like
   end
 end
