@@ -85,11 +85,13 @@ ActiveRecord::Schema.define(version: 2021_11_13_145655) do
 
   create_table "notifications", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "friendship_id", null: false
+    t.bigint "friendship_id"
+    t.bigint "like_id"
     t.boolean "seen", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["friendship_id"], name: "index_notifications_on_friendship_id"
+    t.index ["like_id"], name: "index_notifications_on_like_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -122,5 +124,6 @@ ActiveRecord::Schema.define(version: 2021_11_13_145655) do
   add_foreign_key "comments", "posts"
   add_foreign_key "comments", "users"
   add_foreign_key "notifications", "friendships"
+  add_foreign_key "notifications", "likes"
   add_foreign_key "notifications", "users"
 end

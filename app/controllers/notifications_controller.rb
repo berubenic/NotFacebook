@@ -5,6 +5,7 @@ class NotificationsController < ApplicationController
     @notifications = Notification.where(user_id: current_user.id)
     @friends = find_friends_from_friendships(@notifications)
     mark_notifications_as_seen(@notifications)
+    @likes = find_likes_from_notifications(@notifications)
   end
 
   def create
@@ -14,8 +15,19 @@ class NotificationsController < ApplicationController
 
   private
 
+  def find_likes_from_notifications(notifications, likes = [])
+    notifications.each do |notification|
+      next unless notification.like
+
+      likes << notification.like
+    end
+    likes
+  end
+
   def find_friends_from_friendships(notifications, friends = [])
     notifications.each do |notification|
+      next unless notification.friendship
+
       friendship = notification.friendship
       friends << friendship.user
     end

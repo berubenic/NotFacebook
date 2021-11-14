@@ -2,4 +2,7 @@
   <% @friends.each do |friend| %>
     <li><%= friend.full_name %> sent you a friend request.</li>
   <% end %>
+  <% @likes.each do |like| %>
+    <li><%= like.user.full_name %> liked your post.</li>
+  <% end %>
 </ul>
