@@ -90,6 +90,11 @@ RSpec.feature 'user sees notifications' do
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: user, post: post)
+      # mark comment notification as seen
+      notification = user.notifications.find_by(comment_id: comment.id)
+      notification.seen = true
+      notification.save
+      # ---
       create(:like, comment: comment, user: friend_one, category: 'comment')
       visit root_path
 
@@ -103,5 +108,25 @@ RSpec.feature 'user sees notifications' do
   end
 
   context 'they recieve a comment on a post' do
+    scenario 'they are on the home page' do
+      user = create(:user)
+      friend_one = create(:user, first_name: 'friend', last_name: 'one')
+      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      # mark friendship notification as seen
+      notification = user.notifications.find_by(friendship_id: friendship.id)
+      notification.seen = true
+      notification.save
+      # ---
+      post = create(:post, user: user)
+      comment = create(:comment, user: friend_one, post: post)
+      visit root_path
+
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+
+      find('input[type="submit"]').click
+
+      expect(page).to have_content('Notifications (1)')
+    end
   end
 end

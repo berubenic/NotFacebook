@@ -4,7 +4,6 @@ class CreateLikes < ActiveRecord::Migration[6.1]
       t.references :user
       t.references :post
       t.references :comment
-
       t.timestamps
     end
   end
