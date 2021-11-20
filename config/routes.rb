@@ -23,9 +23,6 @@ Rails.application.routes.draw do
 
   resources :likes, only: %i[create destroy]
 
-  match 'create_post_like', to: 'likes#create_post_like', via: [:post]
-  match 'create_comment_like', to: 'likes#create_comment_like', via: [:post]
-
   match 'destroy_comment_like', to: 'likes#destroy_comment_like', via: [:delete]
   match 'destroy_post_like', to: 'likes#destroy_post_like', via: [:delete]
 

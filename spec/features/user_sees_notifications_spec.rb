@@ -90,7 +90,7 @@ RSpec.feature 'user sees notifications' do
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: user, post: post)
-      create(:like, comment: comment, user: friend_one)
+      create(:like, comment: comment, user: friend_one, category: 'comment')
       visit root_path
 
       fill_in 'user_email', with: user.email

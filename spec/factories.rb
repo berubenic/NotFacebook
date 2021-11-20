@@ -26,5 +26,6 @@ FactoryBot.define do
   factory :like do
     user
     post
+    category { 'post' }
   end
 end
