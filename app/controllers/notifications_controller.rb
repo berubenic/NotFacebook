@@ -14,7 +14,63 @@ class NotificationsController < ApplicationController
     redirect_to users_path
   end
 
+  def update
+    case params[:type]
+    when 'friend'
+      update_friend_notification(params)
+    when 'like'
+      update_like_notification(params)
+    when 'comment'
+      update_comment_notification(params)
+    end
+  end
+
   private
+
+  def update_comment_notification(params)
+    comment = Comment.find(params[:id])
+    notification = Notification.find_by(user_id: current_user.id, comment_id: comment.id)
+    notification.seen = true
+    notification.save!
+
+    redirect_to comment.post
+  end
+
+  def update_like_notification(params)
+    like = Like.find(params[:id])
+    if like.post
+      update_post_like_notification(like)
+    elsif like.comment
+      update_comment_like_notification(like)
+    end
+  end
+
+  def update_post_like_notification(like)
+    post = Post.find(like.post.id)
+    notification = Notification.find_by(user_id: current_user.id, like_id: like.id)
+    notification.seen = true
+    notification.save!
+    redirect_to post
+  end
+
+  def update_comment_like_notification(like)
+    comment = Comment.find(like.comment.id)
+    post = comment.post
+    notification = Notification.find_by(user_id: current_user.id, like_id: like.id)
+    notification.seen = true
+    notification.save!
+    redirect_to post
+  end
+
+  def update_friend_notification(params)
+    friend = User.find(params[:id])
+    friendship = Friendship.find_by(user_id: friend.id, friend_id: current_user.id)
+    notification = Notification.find_by(user_id: current_user.id, friendship_id: friendship.id)
+    notification.seen = true
+    notification.save!
+
+    redirect_to users_path
+  end
 
   def find_comments_from_notifications(notifications, comments = [])
     notifications.each do |notification|

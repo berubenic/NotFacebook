@@ -1,14 +1,14 @@
 <ul>
   <% @friends.each do |friend| %>
-    <li><%= link_to("#{friend.full_name} sent you a friend request.", users_path )%></li>
+    <li><%= link_to("#{friend.full_name} sent you a friend request.", notification_path(friend.id, type: 'friend'), method: :patch )%></li>
   <% end %>
   <% @post_likes.each do |like| %>
-    <li><%= like.user.full_name %> liked your post.</li>
+    <li><%= link_to("#{like.user.full_name} liked your post.", notification_path(like.id, type: 'like'), method: :patch )%></li>
   <% end %>
   <% @comment_likes.each do |like| %>
-    <li><%= like.user.full_name %> liked your comment.</li>
+    <li><%= link_to("#{like.user.full_name} liked your comment.", notification_path(like.id, type: 'like'), method: :patch )%></li>
   <% end %>
   <% @comments.each do |comment| %>
-    <li><%= comment.user.full_name %> commented on your post.</li>
+    <li><%= link_to("#{comment.user.full_name} commented on your post.", notification_path(comment.id, type: 'comment'), method: :patch )%></li>
   <% end %>
 </ul>

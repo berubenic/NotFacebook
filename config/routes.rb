@@ -32,5 +32,5 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :notifications, only: %i[index create]
+  resources :notifications, only: %i[index create update]
 end
