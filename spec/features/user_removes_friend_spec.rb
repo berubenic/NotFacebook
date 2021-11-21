@@ -19,6 +19,7 @@ RSpec.feature 'User removes friend' do
       click_on 'Remove Friend'
 
       expect(page).to have_content('Friend Removed!')
+      expect(user.friends.count).to eq 0
     end
   end
 end

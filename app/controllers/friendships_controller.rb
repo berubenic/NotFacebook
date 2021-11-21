@@ -22,7 +22,11 @@ class FriendshipsController < ApplicationController
                      else
                        'Friend Request Declined!'
                      end
-    friendship.destroy
+    begin
+      friendship.destroy!
+    rescue ActiveRecord::RecordNotDestroyed => e
+      p e.record.errors
+    end
     redirect_to users_path
   end
 

@@ -3,7 +3,7 @@
 class Friendship < ApplicationRecord
   belongs_to :user
   belongs_to :friend, class_name: 'User'
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, dependent: :delete_all
 
   after_create :create_notification
 

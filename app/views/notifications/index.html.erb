@@ -1,6 +1,6 @@
 <ul>
   <% @friends.each do |friend| %>
-    <li><%= friend.full_name %> sent you a friend request.</li>
+    <li><%= link_to("#{friend.full_name} sent you a friend request.", users_path )%></li>
   <% end %>
   <% @post_likes.each do |like| %>
     <li><%= like.user.full_name %> liked your post.</li>

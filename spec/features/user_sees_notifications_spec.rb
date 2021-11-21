@@ -30,6 +30,22 @@ RSpec.feature 'user sees notifications' do
       click_on 'Notifications'
       expect(page).to have_content 'friend one sent you a friend request.'
     end
+
+    scenario 'they go to their notification' do
+      user = create(:user)
+      friend_one = create(:user, first_name: 'friend', last_name: 'one')
+      create(:friendship, user: friend_one, friend: user, confirmed: false)
+      visit root_path
+
+      fill_in 'user_email', with: user.email
+      fill_in 'user_password', with: user.password
+
+      find('input[type="submit"]').click
+
+      click_on 'Notifications'
+      click_on 'friend one sent you a friend request.'
+      expect(page).to_not have_content 'You have no pending friend requests.'
+    end
   end
 
   context 'they recieve a like on a post' do
