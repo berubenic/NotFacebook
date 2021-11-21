@@ -3,10 +3,10 @@
 class NotificationsController < ApplicationController
   def index
     @notifications = Notification.where(user_id: current_user.id)
-    @friends = find_friends_from_friendships(@notifications)
-    mark_notifications_as_seen(@notifications)
+    @friends = find_friends_from_notifications(@notifications)
     @post_likes = find_post_likes_from_notifications(@notifications)
     @comment_likes = find_comment_likes_from_notifications(@notifications)
+    @comments = find_comments_from_notifications(@notifications)
   end
 
   def create
@@ -15,6 +15,16 @@ class NotificationsController < ApplicationController
   end
 
   private
+
+  def find_comments_from_notifications(notifications, comments = [])
+    notifications.each do |notification|
+      comment = notification.comment
+      next unless comment
+
+      comments << comment
+    end
+    comments
+  end
 
   def find_comment_likes_from_notifications(notifications, likes = [])
     notifications.each do |notification|
@@ -36,7 +46,7 @@ class NotificationsController < ApplicationController
     likes
   end
 
-  def find_friends_from_friendships(notifications, friends = [])
+  def find_friends_from_notifications(notifications, friends = [])
     notifications.each do |notification|
       next unless notification.friendship
 
@@ -44,12 +54,5 @@ class NotificationsController < ApplicationController
       friends << friendship.user
     end
     friends
-  end
-
-  def mark_notifications_as_seen(notifications)
-    notifications.each do |notification|
-      notification.seen = true
-      notification.save
-    end
   end
 end

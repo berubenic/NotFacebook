@@ -10,9 +10,9 @@ class LikesController < ApplicationController
     end
     case params[:category]
     when 'post'
-      Like.create(user_id: params[:user_id], post_id: params[:post_id])
+      Like.create(user_id: params[:user_id], post_id: params[:post_id], category: params[:category])
     when 'comment'
-      Like.create(user_id: params[:user_id], comment_id: params[:comment_id])
+      Like.create(user_id: params[:user_id], comment_id: params[:comment_id], category: params[:category])
     end
     flash[:success] = 'Liked!'
 
@@ -50,7 +50,7 @@ class LikesController < ApplicationController
   end
 
   def find_existing_like(params)
-    category = params[:type]
+    category = params[:category]
     case category
     when 'post'
       find_existing_post_like(params)

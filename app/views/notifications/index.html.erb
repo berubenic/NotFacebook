@@ -5,4 +5,10 @@
   <% @post_likes.each do |like| %>
     <li><%= like.user.full_name %> liked your post.</li>
   <% end %>
+  <% @comment_likes.each do |like| %>
+    <li><%= like.user.full_name %> liked your comment.</li>
+  <% end %>
+  <% @comments.each do |comment| %>
+    <li><%= comment.user.full_name %> commented on your post.</li>
+  <% end %>
 </ul>

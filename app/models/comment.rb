@@ -15,6 +15,6 @@ class Comment < ApplicationRecord
   def create_notification
     post = Post.find(post_id)
     user = post.user
-    Notification.create(user_id: user.id, comment_id: id)
+    Notification.create!(user_id: user.id, comment_id: id)
   end
 end

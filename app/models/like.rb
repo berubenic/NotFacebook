@@ -19,11 +19,11 @@ class Like < ApplicationRecord
     when 'post'
       post = Post.find(post_id)
       user = post.user
-      Notification.create(user_id: user.id, like_id: id)
+      Notification.create!(user_id: user.id, like_id: id)
     when 'comment'
       comment = Comment.find(comment_id)
       user = comment.user
-      Notification.create(user_id: user.id, like_id: id)
+      Notification.create!(user_id: user.id, like_id: id)
     end
   end
 end
