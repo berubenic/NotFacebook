@@ -34,6 +34,15 @@ class NotificationsController < ApplicationController
     redirect_to notifications_path
   end
 
+  def delete_all_notifications
+    notifications = current_user.notifications
+    notifications.each do |notification|
+      notification.destroy!
+    end
+    flash[:alert] = 'All notifications have been deleted.'
+    redirect_to notifications_path
+  end
+
   private
 
   def update_comment_notification(params)

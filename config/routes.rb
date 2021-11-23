@@ -35,4 +35,5 @@ Rails.application.routes.draw do
   resources :notifications, only: %i[index create update]
 
   match 'mark_all_as_seen', to: 'notifications#mark_all_as_seen', via: [:get]
+  match 'delete_all_notifications', to: 'notifications#delete_all_notifications', via: [:delete]
 end

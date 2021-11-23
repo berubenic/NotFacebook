@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.feature 'user marks all notifications as seen' do
+RSpec.feature 'user deletes all notifications' do
   context 'they are on the home page' do
-    scenario 'they mark all notifications' do
+    scenario 'they delete all notifications' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
       friend_two = create(:user, first_name: 'friend', last_name: 'two')
@@ -17,9 +17,10 @@ RSpec.feature 'user marks all notifications as seen' do
 
       click_on 'Notifications (2)'
 
-      click_on 'Mark All as Seen'
+      click_on 'Delete All Notifications'
 
       expect(page).to have_content 'Notifications (0)'
+      expect(user.notifications.count).to eq 0
     end
   end
 end
