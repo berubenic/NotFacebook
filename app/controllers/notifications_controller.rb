@@ -25,6 +25,15 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def mark_all_as_seen
+    notifications = current_user.notifications
+    notifications.each do |notification|
+      notification.seen = true
+      notification.save
+    end
+    redirect_to notifications_path
+  end
+
   private
 
   def update_comment_notification(params)

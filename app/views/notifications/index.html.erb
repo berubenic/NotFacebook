@@ -12,3 +12,4 @@
     <li><%= link_to("#{comment.user.full_name} commented on your post.", notification_path(comment.id, type: 'comment'), method: :patch )%></li>
   <% end %>
 </ul>
+<%= link_to 'Mark All as Seen', mark_all_as_seen_path %>
