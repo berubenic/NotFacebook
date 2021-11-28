@@ -1,0 +1,5 @@
+<% unless user.profile_image.attached? %>
+    <%= image_tag 'default_profile.svg', width: '32px', height: '32px', class: 'nav-profile-image'%>
+  <% else %>
+    <%= image_tag user.profile_image.variant(resize_to_limit: [32, nil]), width: 'auto', height: '32px', class: 'nav-profile-image'%>
+  <% end %>

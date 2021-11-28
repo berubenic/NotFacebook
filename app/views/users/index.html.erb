@@ -2,11 +2,11 @@
   <h2>Find Friends</h2>
   <ul class='user-list'>
     <% if @strangers.empty? %>
-      <li>You have no friends left to add.</li>
+      <p>You have no friends left to add.</p>
     <% end %>
     <% @strangers.each do |user| %>
       <div class='user-container'>
-        <li><%= user.full_name %></li>
+        <li><%= render partial: 'shared/user_profile_image_small', locals: {user: user} %> <%= user.full_name %></li>
         <%= button_to 'Add Friend', { controller: 'friendships', action: 'create', user_id: current_user.id, friend_id: user.id }, method: :post, form_class: 'user-button'%>
       </div>
     <% end %>
@@ -16,11 +16,11 @@
   <h2>Friend Requests Sent</h2>
   <ul class='user-list'>
     <% if @friends_sent.empty? %>
-      <li>You have not sent any friends requests.</li>
+      <p>You have not sent any friends requests.</p>
     <% end %>
     <% @friends_sent.each do |user| %>
       <div class='user-container'>
-        <li><%= user.full_name %></li>
+        <li><%= render partial: 'shared/user_profile_image_small', locals: {user: user} %> <%= user.full_name %></li>
         <li><%= button_to 'Cancel Request', cancel_friendship_path(user.id), method: :delete %></li>
       </div>
     <% end %>
@@ -30,11 +30,11 @@
   <h2>Friends</h2>
   <ul class='user-list'>
     <% if @friends.empty? %>
-      <li>You have no friends.</li>
+      <p>You have no friends.</p>
     <% end %>
     <% @friends.each do |user| %>
       <div class='user-container'>
-        <li><%= user.full_name %></li>
+        <li><%= render partial: 'shared/user_profile_image_small', locals: {user: user} %> <%= user.full_name %></li>
         <li><%= button_to 'Remove Friend', friendship_path(user.id), method: :delete %></li>
       </div>
     <% end %>
@@ -44,11 +44,11 @@
   <h2>Pending Requests</h2>
   <ul class='user-list'>
     <% if @friends_recieved.empty? %>
-      <li>You have no pending friend requests.</li>
+      <p>You have no pending friend requests.</p>
     <% end %>
     <% @friends_recieved.each do |user| %>
       <div class='user-container'>
-        <li><%= user.full_name %></li>
+        <li><%= render partial: 'shared/user_profile_image_small', locals: {user: user} %> <%= user.full_name %></li>
         <li>
           <%= button_to 'Accept Request', friendship_path(user.id), method: :patch %>
           <%= button_to 'Decline Request', friendship_path(user.id), method: :delete %>

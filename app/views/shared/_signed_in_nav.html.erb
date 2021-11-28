@@ -3,11 +3,7 @@
 <%= link_to "Profile", edit_user_registration_path %>
 <%= link_to "Notifications (#{current_user.notifications.unseen.count})", notifications_path %>
 <div class='nav-user-container'>
-  <% unless current_user.profile_image.attached? %>
-    <%= image_tag 'default_profile.svg', width: '64px', height: '64px', class: 'nav-profile-image'%>
-  <% else %>
-    <%= image_tag current_user.profile_image.variant(resize_to_limit: [64, nil]), width: 'auto', height: '64px', class: 'nav-profile-image'%>
-  <% end %>
+  <%= render partial: 'shared/user_profile_image', locals: {user: current_user} %>
   <p class='nav-user-name'><%= current_user.full_name %></p>
 </div>
 <%= link_to "Logout", destroy_user_session_path, method: :delete  %>

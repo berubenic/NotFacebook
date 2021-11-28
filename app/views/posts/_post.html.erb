@@ -1,8 +1,12 @@
 <div class='post-container'>
   <div class='post-header'>
-    <h4 ><%= post.user.full_name %></h4>
+  <%= render partial: 'shared/user_profile_image', locals: { user: post.user } %>
+  <div class='header-text'>
+  <h4 ><%= post.user.full_name %></h4>
     <h5 class='post-date'><%= post.created_at.strftime('%B %d %Y at %H:%M') %></h5>
+  
   </div>
+    </div>
   <div class='post-body'>
     <p class='post-body-text'><%= post.body %></p>
     <% if post.post_image.attached? %>
