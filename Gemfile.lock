@@ -414,6 +414,7 @@ DEPENDENCIES
   capybara (>= 3.26)
   cloudinary
   database_cleaner
+  database_cleaner-active_record
   devise
   factory_bot_rails
   guard-livereload
