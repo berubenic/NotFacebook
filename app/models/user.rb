@@ -4,19 +4,27 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :omniauthable, omniauth_providers: %i[facebook]
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable
+  devise :database_authenticatable,
+         :registerable,
+         :recoverable,
+         :rememberable,
+         :validatable
   validates :first_name, :last_name, presence: true
   validates :first_name, :last_name, length: { in: 2..20 }
-  validates :first_name, :last_name, format: { with: /\A[a-zA-Z]+\z/,
-                                               message: 'only allows letters' }
+  validates :first_name,
+            :last_name,
+            format: {
+              with: /\A[a-zA-Z]+\z/,
+              message: 'only allows letters'
+            }
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :friendships, dependent: :destroy
-  has_many :pending_friendships, lambda {
-                                   where confirmed: false
-                                 }, class_name: 'Friendship', foreign_key: 'friend_id',
-                                    dependent: :destroy
+  has_many :pending_friendships,
+           lambda { where confirmed: false },
+           class_name: 'Friendship',
+           foreign_key: 'friend_id',
+           dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :notifications, dependent: :destroy
 
@@ -24,8 +32,10 @@ class User < ApplicationRecord
   validates_with ImageValidator, fields: { attribute_name: :profile_image }
 
   def friends
-    sent_friendships = Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)
-    recieved_friendships = Friendship.where(friend_id: id, confirmed: true).pluck(:user_id)
+    sent_friendships =
+      Friendship.where(user_id: id, confirmed: true).pluck(:friend_id)
+    recieved_friendships =
+      Friendship.where(friend_id: id, confirmed: true).pluck(:user_id)
     ids = sent_friendships + recieved_friendships
     User.where(id: ids)
   end
@@ -35,12 +45,14 @@ class User < ApplicationRecord
   end
 
   def pending_friend_requests_sent
-    pending_friends_ids = Friendship.where(user_id: id, confirmed: false).pluck(:friend_id)
+    pending_friends_ids =
+      Friendship.where(user_id: id, confirmed: false).pluck(:friend_id)
     User.where(id: pending_friends_ids)
   end
 
   def pending_friend_requests_recieved
-    pending_friends_ids = Friendship.where(friend_id: id, confirmed: false).pluck(:user_id)
+    pending_friends_ids =
+      Friendship.where(friend_id: id, confirmed: false).pluck(:user_id)
     User.where(id: pending_friends_ids)
   end
 
@@ -66,10 +78,10 @@ class User < ApplicationRecord
       user.last_name = auth.info.name.split[-1]
     end
   end
+
   # rubocop:enable Metrics/AbcSize
 
   def full_name
     "#{first_name} #{last_name}"
   end
-
 end

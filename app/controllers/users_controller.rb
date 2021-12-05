@@ -12,7 +12,8 @@ class UsersController < ApplicationController
     @friends_recieved = user.pending_friend_requests_recieved
     friends_recieved_ids = @friends_recieved.pluck(:id)
 
-    ids = friends_ids + friends_sent_ids + friends_recieved_ids + [current_user.id]
+    ids =
+      friends_ids + friends_sent_ids + friends_recieved_ids + [current_user.id]
     @strangers = User.where.not(id: ids)
   end
 

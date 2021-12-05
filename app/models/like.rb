@@ -5,10 +5,7 @@ class Like < ApplicationRecord
   belongs_to :post, optional: true
   belongs_to :comment, optional: true
   has_many :notifications, dependent: :delete_all
-  enum category: {
-    'post' => 0,
-    'comment' => 1
-  }
+  enum category: { 'post' => 0, 'comment' => 1 }
 
   after_create :create_notification
 

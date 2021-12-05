@@ -18,9 +18,7 @@ RSpec.feature 'User deletes a comment' do
       fill_in 'comment_body', with: 'I am a comment'
       click_on 'Create Comment'
 
-      within('div', class: 'comment-actions') do
-        click_on 'Delete'
-      end
+      within('div', class: 'comment-actions') { click_on 'Delete' }
 
       expect(page).to_not have_content 'I am a comment'
     end
@@ -37,9 +35,7 @@ RSpec.feature 'User deletes a comment' do
 
       find('input[type="submit"]').click
 
-      within('div', class: 'comment-actions') do
-        click_on 'Delete'
-      end
+      within('div', class: 'comment-actions') { click_on 'Delete' }
 
       expect(page).to_not have_content 'I am a comment'
     end

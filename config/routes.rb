@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users,
-             controllers: { omniauth_callbacks: 'users/omniauth_callbacks', registrations: 'users/registrations' }
+             controllers: {
+               omniauth_callbacks: 'users/omniauth_callbacks',
+               registrations: 'users/registrations'
+             }
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: %i[index]
 
@@ -10,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
   root 'devise/sessions#new'
+
   # FIX FOR refreshing users/password/new after error resulted in No Route Error
   get 'users/password', to: redirect('/')
   match 'delete_profile_image', to: 'users#delete_profile_image', via: [:get]
@@ -19,7 +24,10 @@ Rails.application.routes.draw do
 
   resources :friendships, only: %i[create update destroy]
 
-  match 'cancel_friendship/:id', to: 'friendships#cancel_friendship', as: 'cancel_friendship', via: [:delete]
+  match 'cancel_friendship/:id',
+        to: 'friendships#cancel_friendship',
+        as: 'cancel_friendship',
+        via: [:delete]
 
   resources :likes, only: %i[create destroy]
 
@@ -27,13 +35,13 @@ Rails.application.routes.draw do
   match 'destroy_post_like', to: 'likes#destroy_post_like', via: [:delete]
 
   resources :deletion_requests, only: [:show] do
-    collection do
-      post :facebook
-    end
+    collection { post :facebook }
   end
 
   resources :notifications, only: %i[index create update]
 
   match 'mark_all_as_seen', to: 'notifications#mark_all_as_seen', via: [:get]
-  match 'delete_all_notifications', to: 'notifications#delete_all_notifications', via: [:delete]
+  match 'delete_all_notifications',
+        to: 'notifications#delete_all_notifications',
+        via: [:delete]
 end

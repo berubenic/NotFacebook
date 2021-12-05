@@ -68,11 +68,14 @@ RSpec.feature 'user sees notifications' do
     scenario 'they are on the home page' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       create(:like, post: post, user: friend_one)
@@ -89,11 +92,14 @@ RSpec.feature 'user sees notifications' do
     scenario 'they view their notifications' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       create(:like, post: post, user: friend_one)
@@ -111,11 +117,14 @@ RSpec.feature 'user sees notifications' do
     scenario 'they go their notification' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       create(:like, post: post, user: friend_one)
@@ -136,18 +145,23 @@ RSpec.feature 'user sees notifications' do
     scenario 'they are on the home page' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: user, post: post)
+
       # mark comment notification as seen
       notification = user.notifications.find_by(comment_id: comment.id)
       notification.seen = true
       notification.save
+
       # ---
       create(:like, comment: comment, user: friend_one, category: 'comment')
       visit root_path
@@ -163,18 +177,23 @@ RSpec.feature 'user sees notifications' do
     scenario 'they view their notifications' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: user, post: post)
+
       # mark comment notification as seen
       notification = user.notifications.find_by(comment_id: comment.id)
       notification.seen = true
       notification.save
+
       # ---
       create(:like, comment: comment, user: friend_one, category: 'comment')
       visit root_path
@@ -192,18 +211,23 @@ RSpec.feature 'user sees notifications' do
     scenario 'they go their notification' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: user, post: post)
+
       # mark comment notification as seen
       notification = user.notifications.find_by(comment_id: comment.id)
       notification.seen = true
       notification.save
+
       # ---
       create(:like, comment: comment, user: friend_one, category: 'comment')
       visit root_path
@@ -224,11 +248,14 @@ RSpec.feature 'user sees notifications' do
     scenario 'they are on the home page' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: friend_one, post: post)
@@ -245,11 +272,14 @@ RSpec.feature 'user sees notifications' do
     scenario 'they view their notifications' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: friend_one, post: post)
@@ -268,11 +298,14 @@ RSpec.feature 'user sees notifications' do
     scenario 'they go to their notification' do
       user = create(:user)
       friend_one = create(:user, first_name: 'friend', last_name: 'one')
-      friendship = create(:friendship, user: friend_one, friend: user, confirmed: true)
+      friendship =
+        create(:friendship, user: friend_one, friend: user, confirmed: true)
+
       # mark friendship notification as seen
       notification = user.notifications.find_by(friendship_id: friendship.id)
       notification.seen = true
       notification.save
+
       # ---
       post = create(:post, user: user)
       comment = create(:comment, user: friend_one, post: post)

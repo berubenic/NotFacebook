@@ -1,3 +1,6 @@
+inherit_gem:
+  prettier: rubocop.yml
+
 require:
   - rubocop-rails
 
@@ -13,7 +16,7 @@ AllCops:
     - config/**/*
     - Guardfile
     - spec/**/*
-    
+
 Style/Documentation:
   Enabled: false
 
@@ -23,4 +26,4 @@ Metrics/BlockLength:
     - db/**/*
 Lint/MissingSuper:
   Exclude:
-  - app/**/*
+    - app/**/*

@@ -13,7 +13,9 @@ RSpec.feature 'User submits the forgot password form' do
 
       find('input[type="submit"]').click
 
-      expect(page).to have_content 'You will receive an email with instructions on how to reset your password in a few minutes.'
+      expect(
+        page
+      ).to have_content 'You will receive an email with instructions on how to reset your password in a few minutes.'
     end
   end
   context 'the user does not exist' do

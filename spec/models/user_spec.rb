@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe User, 'validations' do
   it { is_expected.to validate_presence_of(:first_name) }
   it { is_expected.to validate_presence_of(:last_name) }
+
   # length
   it { is_expected.to validate_length_of(:first_name) }
   it { is_expected.to allow_value('Jo').for(:first_name) }
@@ -10,6 +11,7 @@ RSpec.describe User, 'validations' do
   it { is_expected.to validate_length_of(:last_name) }
   it { is_expected.to allow_value('Jo').for(:last_name) }
   it { is_expected.to_not allow_value('J').for(:last_name) }
+
   # format
   it { is_expected.to_not allow_value('12').for(:first_name) }
   it { is_expected.to_not allow_value('1Jo').for(:first_name) }
@@ -61,40 +63,51 @@ end
 RSpec.describe User, '#acceptable_image' do
   it 'adds errors if image is too big' do
     user = create(:user, first_name: 'Joe', last_name: 'Picket')
-    user.profile_image.attach(io: File.open(Rails.root + 'spec/fixtures/too_big.png'), filename: 'too_big.png')
+    user.profile_image.attach(
+      io: File.open(Rails.root + 'spec/fixtures/too_big.png'),
+      filename: 'too_big.png'
+    )
 
     expect(user.errors.full_messages).to include('Profile image is too big')
   end
 
   it 'adds errors if image is wrong type' do
     user = create(:user, first_name: 'Joe', last_name: 'Picket')
-    user.profile_image.attach(io: File.open(Rails.root + 'spec/fixtures/wrong_type.fig'), filename: 'wrong_type.fig')
+    user.profile_image.attach(
+      io: File.open(Rails.root + 'spec/fixtures/wrong_type.fig'),
+      filename: 'wrong_type.fig'
+    )
 
-    expect(user.errors.full_messages).to include('Profile image must be a JPEG or PNG')
+    expect(user.errors.full_messages).to include(
+      'Profile image must be a JPEG or PNG'
+    )
   end
 end
 
 RSpec.describe User, '.from_omniauth' do
   let(:auth_hash) do
-    OmniAuth::AuthHash.new({
-                             provider: 'facebook',
-                             uid: '1234',
-                             info: {
-                               email: 'email@email.com',
-                               name: 'Joe Picket'
-                             }
-                           })
+    OmniAuth::AuthHash.new(
+      {
+        provider: 'facebook',
+        uid: '1234',
+        info: {
+          email: 'email@email.com',
+          name: 'Joe Picket'
+        }
+      }
+    )
   end
   it 'retrieves an existing user' do
-    user = User.new(
-      provider: 'facebook',
-      uid: '1234',
-      email: 'email@email.com',
-      password: 'password',
-      password_confirmation: 'password',
-      first_name: 'Joe',
-      last_name: 'Picket'
-    )
+    user =
+      User.new(
+        provider: 'facebook',
+        uid: '1234',
+        email: 'email@email.com',
+        password: 'password',
+        password_confirmation: 'password',
+        first_name: 'Joe',
+        last_name: 'Picket'
+      )
     user.save
 
     omniauth_user = User.from_omniauth(auth_hash)

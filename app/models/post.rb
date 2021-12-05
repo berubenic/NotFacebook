@@ -14,10 +14,14 @@ class Post < ApplicationRecord
   def acceptable_image
     return unless post_image.attached?
 
-    errors.add(:post_image, 'is too big') unless post_image.byte_size <= 1.megabyte
+    unless post_image.byte_size <= 1.megabyte
+      errors.add(:post_image, 'is too big')
+    end
 
-    acceptable_types = ['image/jpeg', 'image/png']
+    acceptable_types = %w[image/jpeg image/png]
 
-    errors.add(:post_image, 'must be a JPEG or PNG') unless acceptable_types.include?(post_image.content_type)
+    unless acceptable_types.include?(post_image.content_type)
+      errors.add(:post_image, 'must be a JPEG or PNG')
+    end
   end
 end

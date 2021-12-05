@@ -23,7 +23,6 @@ default: &default
   username: notfacebook
   password: <%= ENV['NOTFACEBOOK_DATABASE_PASSWORD'] %>
 
-
 development:
   <<: *default
   host: localhost

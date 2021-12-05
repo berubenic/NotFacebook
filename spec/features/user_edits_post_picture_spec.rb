@@ -5,8 +5,11 @@ RSpec.feature 'User edits post picture' do
     scenario 'they remove the picture' do
       user = create(:user)
       post = create(:post, user: user, body: 'I am a post')
-      post.post_image.attach(io: File.open(Rails.root + 'spec/fixtures/green.png'), filename: 'green.png',
-                             content_type: 'img/png')
+      post.post_image.attach(
+        io: File.open(Rails.root + 'spec/fixtures/green.png'),
+        filename: 'green.png',
+        content_type: 'img/png'
+      )
       visit root_path
 
       fill_in 'user_email', with: user.email
@@ -25,8 +28,11 @@ RSpec.feature 'User edits post picture' do
     scenario 'they change the picture' do
       user = create(:user)
       post = create(:post, user: user, body: 'I am a post')
-      post.post_image.attach(io: File.open(Rails.root + 'spec/fixtures/green.png'), filename: 'green.png',
-                             content_type: 'img/png')
+      post.post_image.attach(
+        io: File.open(Rails.root + 'spec/fixtures/green.png'),
+        filename: 'green.png',
+        content_type: 'img/png'
+      )
       visit root_path
 
       fill_in 'user_email', with: user.email

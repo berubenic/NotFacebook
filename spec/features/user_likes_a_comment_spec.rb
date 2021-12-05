@@ -14,9 +14,7 @@ RSpec.feature 'User likes a comment' do
 
       find('input[type="submit"]').click
 
-      within('div', class: 'comment-container') do
-        click_on 'Like'
-      end
+      within('div', class: 'comment-container') { click_on 'Like' }
 
       expect(page).to have_content('Unlike (1 Like)', count: 1)
     end
@@ -34,9 +32,7 @@ RSpec.feature 'User likes a comment' do
 
       find('input[type="submit"]').click
 
-      within('div', class: 'comment-container') do
-        click_on 'Like'
-      end
+      within('div', class: 'comment-container') { click_on 'Like' }
 
       expect(page).to have_content 'Unlike (1 Like)', count: 1
     end

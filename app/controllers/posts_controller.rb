@@ -4,7 +4,11 @@ class PostsController < ApplicationController
   def index
     friend_ids = current_user.friends.pluck(:id)
     friend_ids << current_user
-    @posts = Post.where(user_id: friend_ids).order(created_at: :desc).includes(:user, :post_image_attachment)
+    @posts =
+      Post
+        .where(user_id: friend_ids)
+        .order(created_at: :desc)
+        .includes(:user, :post_image_attachment)
     @post = Post.new
   end
 
@@ -55,6 +59,12 @@ class PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:body, :post_image, comments_attributes: %i[id body user_id post_id])
+    params
+      .require(:post)
+      .permit(
+        :body,
+        :post_image,
+        comments_attributes: %i[id body user_id post_id]
+      )
   end
 end

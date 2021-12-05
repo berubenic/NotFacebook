@@ -34,7 +34,9 @@ RSpec.feature 'User submits the sign in form' do
       visit root_path
       set_omniauth('facebook')
       click_on 'Sign in with Facebook'
-      expect(page).to have_content 'Successfully authenticated from Facebook account'
+      expect(
+        page
+      ).to have_content 'Successfully authenticated from Facebook account'
     end
   end
 end

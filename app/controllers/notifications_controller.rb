@@ -10,7 +10,10 @@ class NotificationsController < ApplicationController
   end
 
   def create
-    Notification.create!(user_id: params[:user_id], friendship_id: params[:friendship_id])
+    Notification.create!(
+      user_id: params[:user_id],
+      friendship_id: params[:friendship_id]
+    )
     redirect_to users_path
   end
 
@@ -36,9 +39,7 @@ class NotificationsController < ApplicationController
 
   def delete_all_notifications
     notifications = current_user.notifications
-    notifications.each do |notification|
-      notification.destroy!
-    end
+    notifications.each { |notification| notification.destroy! }
     flash[:alert] = 'All notifications have been deleted.'
     redirect_to notifications_path
   end
@@ -47,7 +48,8 @@ class NotificationsController < ApplicationController
 
   def update_comment_notification(params)
     comment = Comment.find(params[:id])
-    notification = Notification.find_by(user_id: current_user.id, comment_id: comment.id)
+    notification =
+      Notification.find_by(user_id: current_user.id, comment_id: comment.id)
     notification.seen = true
     notification.save!
 
@@ -65,7 +67,8 @@ class NotificationsController < ApplicationController
 
   def update_post_like_notification(like)
     post = Post.find(like.post.id)
-    notification = Notification.find_by(user_id: current_user.id, like_id: like.id)
+    notification =
+      Notification.find_by(user_id: current_user.id, like_id: like.id)
     notification.seen = true
     notification.save!
     redirect_to post
@@ -74,7 +77,8 @@ class NotificationsController < ApplicationController
   def update_comment_like_notification(like)
     comment = Comment.find(like.comment.id)
     post = comment.post
-    notification = Notification.find_by(user_id: current_user.id, like_id: like.id)
+    notification =
+      Notification.find_by(user_id: current_user.id, like_id: like.id)
     notification.seen = true
     notification.save!
     redirect_to post
@@ -82,8 +86,13 @@ class NotificationsController < ApplicationController
 
   def update_friend_notification(params)
     friend = User.find(params[:id])
-    friendship = Friendship.find_by(user_id: friend.id, friend_id: current_user.id)
-    notification = Notification.find_by(user_id: current_user.id, friendship_id: friendship.id)
+    friendship =
+      Friendship.find_by(user_id: friend.id, friend_id: current_user.id)
+    notification =
+      Notification.find_by(
+        user_id: current_user.id,
+        friendship_id: friendship.id
+      )
     notification.seen = true
     notification.save!
 
