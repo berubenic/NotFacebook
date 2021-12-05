@@ -6,6 +6,18 @@ Ruby on Rails social network project
 
 [View app in browser (30 seconds for Heroku Dyno to wake up)](https://berube-notfacebook.herokuapp.com/)
 
+The sample data is reset every hour.
+
+Email: 
+
+`example_test@email.com`
+
+Password:
+
+ `example_test`
+
+More user credentials can be found in `db/seeds.rb`
+
 ## Project Requirements
 
 This project replicates the core functionalities of a social media application like Facebook.
@@ -13,6 +25,8 @@ This project replicates the core functionalities of a social media application l
 The application is fully tested to ensure everything behaves as needed.
 
 ## Demo
+
+![App Demo](app/assets/demo/notfacebook-demo.gif)
 
 ## Features
 
